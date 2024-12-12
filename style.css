@@ -15,6 +15,12 @@ body {
   padding: 0;
 }
 
+.logo {
+  width: 100px; /* Adjust the width as needed */
+    height: 200px; /* Maintain aspect ratio */
+}
+
+
 .login-bg {
   background-image: url('images/SSITE-LOGO.png');
   background-size: 180px;
@@ -47,7 +53,7 @@ body {
 .ssite img {
   width: 200px;
   height: auto;
-  display: block;
+  display:block;
   margin: 0 auto;
 }
 
