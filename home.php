@@ -30,5 +30,5 @@ $result = $stmt->get_result();
         </div>
     </main>
 <footer>
-<!-- <?php include('includes/footer.php'); ?> POSSIBLY ILAGAY LANG SA MISMONG HOME PAGE-->
+<?php include('includes/footer.php'); ?>
 

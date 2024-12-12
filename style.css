@@ -396,15 +396,15 @@ button:not(.disabled_ad-edit-btn):hover {
 }
 
 .custom-nav button {
-  background-color: #458D9E;
+  background-color: #ffffff;
   border-color: #DCEEF2;    
   padding: .5% 3% .5% 3%;
 }
 
 .custom-nav button:hover{
   background-color: #DCEEF2;
-  border-color: #1E4A50;    
-  color: #1E4A50;
+  border-color: #ffffff;    
+  color: #ffffff;
 }
 
 .custom-nav .navbar-brand, 
@@ -432,14 +432,14 @@ color: #f4f4f4;
   top: 20px;
   background-color: transparent;
   border: none;
-  color: #163A3E;
+  color: #fcfcfc;
   font-size: 2.0rem;
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
 #back-btn:hover {
-  color: #458D9E;
+  color: #ffffff;
 }
 
 /* CATEGORY */
@@ -508,11 +508,11 @@ select.admin-sel {
 }
 
 .nav-item.active .nav-link {
-  color: #F9F6F6 !important;
+  color: #ffffff !important;
 }
 
 .nav-item:hover .nav-link {
-  color: #5e9ba9 !important;
+  color: #6f94ba !important;
 }
 
 
@@ -521,11 +521,11 @@ select.admin-sel {
 }
 
 .navbar-nav ms-auto.active {
-  color: #f9f6f6;
+  color: #ffffff;
 }
-
+/* hshs */
 .navbar-nav ms-auto:hover {
-  color: #5e9ba9;
+  color: #ffffff;
 }
 
 .btn.btn-primary {
@@ -540,12 +540,12 @@ select.admin-sel {
 .btn.btn-primary:hover {
   background-color: transparent;
   border: none;
-  color: #5e9ba9 !important;
+  color: #6f94ba !important;
 }
 
 /* Offcanvas Styling */
 .offcanvas {
-  background-color: #285963 !important;
+  background-color: #ffffff !important;
   color: #F9F6F6;
   padding: 20px;
   border: none;
@@ -568,13 +568,14 @@ select.admin-sel {
 
 .offcanvas a {
   color: #163A3E;
+  background-color: #ffffff;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .offcanvas a:hover {
-  color: #458D9E;
+  color: #ffffff;
   text-decoration: none;
   border: none;
   background-color: transparent;
@@ -585,7 +586,15 @@ select.admin-sel {
   margin: 0 auto;
 }
 
+.sidebar{
+  background-color: #3f658b;
+  border-radius: 12px;
+  padding: 2px;
+}
 
+.page-container{
+  background-image: url('images/Messy-Keepy.png')
+}
 /* Admin */
 .logossite {
   display: flex;
