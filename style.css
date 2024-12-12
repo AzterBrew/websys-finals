@@ -594,7 +594,10 @@ select.admin-sel {
 
 .page-container{
   background-image: url('images/Messy-Keepy.png');
-  height: 100%;
+}
+
+.content{
+  background-image:url('images/Messy-Keepy.png');
 }
 /* Admin */
 .logossite {

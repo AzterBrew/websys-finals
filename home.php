@@ -21,6 +21,17 @@ $result = $stmt->get_result();
         <div class="page-container">
             <div>
                 <h1>Hello, <?=$username?></h1>
+                <h1>Hello, <?=$username?></h1>
+                <h1>Hello, <?=$username?></h1>
+                <h1>Hello, <?=$username?></h1>
+                <h1>Hello, <?=$username?></h1>
+                <h1>Hello, <?=$username?></h1>
+                <h1>Hello, <?=$username?></h1>
+                <h1>Hello, <?=$username?></h1>
+                <h1>Hello, <?=$username?></h1>
+                <h1>Hello, <?=$username?></h1>
+                <h1>Hello, <?=$username?></h1>
+
                 <hr>
             </div>    
         </div>
