@@ -8,16 +8,10 @@
     <title>SSITE | Login</title>
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
-<header>
-    <!-- PRANS INSERT LOGO HERE -->
-    <!-- <img src="images/SSITE-LOGO.png" alt="SSITE-LOGO Logo" style="width:80px;height:auto;"> -->
-    <h1>LOGIN</h1>
-</header>
 <body class="login-bg">
-    <div class="ssite">
-        <!-- PRANS INSERT LOGO HERE -->
-        <img src="assets/images/Keepy_Logo.ico" alt="Keepy Logo" style="width:80px;height:auto;">
-        <h1 style="text-align: center">KEEPY INVENTORY SYSTEM</h1>
+    <div class="keepy">
+        <img src="images/Keepy Logo.png" alt="Keepy Logo" style="width: 250px;height:auto;">
+        <h1 style="text-align: center">Inventory Management System</h1>
     </div>
         <div class="login-container">
          <h2>Log In</h2>
