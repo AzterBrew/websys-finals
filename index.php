@@ -16,7 +16,7 @@
 <body class="login-bg">
     <div class="ssite">
         <!-- PRANS INSERT LOGO HERE -->
-        <img src="images/Keepy Logo.ico" alt="Site Logo" style="width:80px;height:auto;">
+        <img src="assets/images/Keepy_Logo.ico" alt="Keepy Logo" style="width:80px;height:auto;">
         <h1 style="text-align: center">KEEPY INVENTORY SYSTEM</h1>
     </div>
         <div class="login-container">
