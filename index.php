@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="images/SSITE-LOGO.png" type="image/png">
+    <link rel="icon" href="assets/images/Keepy_Logo.ico" type="image/png">
     <title>SSITE | Login</title>
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
