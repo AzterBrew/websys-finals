@@ -11,8 +11,8 @@ include 'middleware.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- PRANS INSERT WEB ICON / LOGO HERE -->
-    <!-- <link rel="icon" href="images/SSITE-LOGO.png" type="image/png"> -->
-    <title>\GRPNAME\ Inventory System</title>
+    <link rel="icon" href="assets/images/Keepy_Logo.png" type="image/png">
+    <title>Keepy - Inventory System</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css" >
