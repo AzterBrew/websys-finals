@@ -44,7 +44,7 @@ body {
   align-items: center;
   margin: 10px auto;
   padding: 20px;
-  border: 1.5px solid #284863;
+  border: 1.5px solid #285963;
   border-radius: 10px;
   background-color: #F9F6F6;
   max-width:1500px;
@@ -151,7 +151,7 @@ p a {
 }
 
 p a:active {
-  color: #d1dcdd;
+  color: #3f658b;
 }
 
 p a:hover {
@@ -162,7 +162,7 @@ p a:hover {
 /* Header Section */
 header {
   background-color: #d7dce4;
-  color: #285963;
+  color: #3f658b;
   padding: 20px;
   display: flex;
   align-items: center;
@@ -170,7 +170,7 @@ header {
   font-family: 'Inter', sans-serif;
   font-size: 1.25rem;
   font-weight: bold;
-  border-bottom: 2px solid #285963;
+  border-bottom: 2px solid #3f658b;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -317,9 +317,9 @@ button:not(.disabled_ad-edit-btn):hover {
   align-items: center;
   margin: 20px auto;
   padding: 20px;
-  border: 2px solid #285963;
+  border: 2px solid #3f658b;
   border-radius: 12px;
-  background-color: #285963;
+  background-color: #3f658b;
   max-width: 400px;
 }
 
@@ -381,10 +381,11 @@ button:not(.disabled_ad-edit-btn):hover {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* NAVBAR */
+/* NAVBAR - Header */ 
 .custom-nav, #admin-logout {
-  background-color: #285963; /* Replace with your hex code */
+  background-color: #3f658b; /* Replace with your hex code */
   color: #f4f4f4; /* Text color */
+  padding: 2.5px;
 }
 
 .custom-nav {
@@ -448,7 +449,7 @@ select.admin-sel {
   padding: 12px;
   border: 1px solid #F9F6F6;
   border-radius: 8px;
-  background-color: #1E4A50;
+  background-color: #3f658b ;
   color: #DCEEF2;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
@@ -456,10 +457,10 @@ select.admin-sel {
 }
 
 .admin-mod-text p, .admin-mod-text label{
-  color: #163A3E;
+  color: #3f658b;
 }
 .card-body{
-  color: #163A3E;
+  color: #3f658b;
 }
 
 .card-header {
@@ -653,7 +654,7 @@ select.admin-sel {
 .footer {
   max-height: 50%;
   width: 100%;
-  background: #285963;
+  background: #3f658b;
   color: #f4f4f4;
   padding: 30px 0;
   font-family: 'Play', sans-serif;

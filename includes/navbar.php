@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg shadow custom-nav">
     <div class="container-fluid ms-3">
       <a id="logo-ssite-1" href="../home.php">
-        <img src="images/SSITE-LOGO.png" alt="LAGAY NALANG LOGO DITO" style="width:80px;height:auto;">
+        <img src="images/Keepy-White.png" alt="Keepy Logo" style="width:110px;height:auto;">
         </a>
       
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

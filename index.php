@@ -8,10 +8,6 @@
     <title> Keepy | Login </title>
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
-<header>
-    <img src="images/Keepy Logo.png" alt="Keepy Logo"  style="width:100px;height:auto;">
-    <h1>LOGIN</h1>
-</header>
 <body class="login-bg">
     <div class="keepy">
         <img src="images/Keepy Logo.png" alt="Keepy Logo" style="width: 250px;height:auto;">
