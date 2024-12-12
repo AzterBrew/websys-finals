@@ -593,7 +593,8 @@ select.admin-sel {
 }
 
 .page-container{
-  background-image: url('images/Messy-Keepy.png')
+  background-image: url('images/Messy-Keepy.png');
+  height: 100%;
 }
 /* Admin */
 .logossite {
@@ -629,7 +630,7 @@ select.admin-sel {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('images/SSITE-LOGO.png');
+  background-image: url('images/Messy-Keepy.png');
   background-repeat: repeat;
   background-size: 180px;
   background-color: #b4dbe6;
