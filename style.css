@@ -9,17 +9,23 @@ body {
   font-family: 'Futura', Bold;    
   background-size: 150px;
   background-position: center;
-  color: #285963;
+  color: #3f658b;
   line-height: 1.6;
   margin: 0;
   padding: 0;
 }
 
+.logo {
+  width: 100px; /* Adjust the width as needed */
+    height: 200px; /* Maintain aspect ratio */
+}
+
+
 .login-bg {
   background-image: url('images/SSITE-LOGO.png');
   background-size: 180px;
   background-position: center;
-  background-color: #458D9E;
+  background-color: #3f658b;
 }
 
 #passwarning {
@@ -32,34 +38,34 @@ body {
 
 
 /* SSITE Section */
-.ssite {
+.keepy {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 20px;
-  border: 2px solid #285963;
-  border-radius: 12px;
+  border: 1.5px solid #285963;
+  border-radius: 10px;
   background-color: #F9F6F6;
-  max-width: 400px;
+  max-width:1500px;
 }
 
-.ssite img {
+.keepy img {
   width: 200px;
   height: auto;
-  display: block;
+  display:block;
   margin: 0 auto;
 }
 
-.ssite p {
+.keepy p {
   font-size: 1.2rem;
   margin-top: 10px;
-  color: #285963;
+  color: #374071;
 }
 
 /* Login Container */
 .login-container {
-  background-color: #285963;
+  background-color: #334d7d;
   padding: 30px;
   border-radius: 12px;
   max-width: 400px;
@@ -75,7 +81,7 @@ body {
 }
 
 .login-container h2 {
-  color: #F9F6F6;
+  color: #ffffff;
   font-size: 1.8rem;
   text-align: center;
   margin-bottom: 20px;
@@ -96,8 +102,8 @@ body {
   padding: 12px;
   border: 1px solid #F9F6F6;
   border-radius: 8px;
-  background-color: #1E4A50;
-  color: #DCEEF2;
+  background-color: #ffffff;
+  color: #1b2941;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   transition: border-color 0.3s ease, background-color 0.3s ease;
@@ -106,14 +112,14 @@ body {
 .login-container input:focus {
   border-color: #DCEEF2;
   outline: none;
-  background-color: #163A3E;
+  background-color: #d7dce4;
 }
 
 .login-container button {
   width: 100%;
   padding: 12px;
   margin: 0 auto;
-  background-color: #458D9E;
+  background-color: #3e4b7f;
   color: #F9F6F6;
   border: none;
   border-radius: 8px;
@@ -125,7 +131,7 @@ body {
 }
 
 .login-container button:hover {
-  background-color: #1E4A50;
+  background-color: #223654;
   transform: translateY(-2px);
 }
 
@@ -145,18 +151,18 @@ p a {
 }
 
 p a:active {
-  color: #d1dcdd;
+  color: #3f658b;
 }
 
 p a:hover {
-  color: #458D9E;
+  color: #5d7d9e;
   text-decoration: underline;
 }
 
 /* Header Section */
 header {
-  background-color: #CEDFE3;
-  color: #285963;
+  background-color: #d7dce4;
+  color: #3f658b;
   padding: 20px;
   display: flex;
   align-items: center;
@@ -164,7 +170,7 @@ header {
   font-family: 'Inter', sans-serif;
   font-size: 1.25rem;
   font-weight: bold;
-  border-bottom: 2px solid #285963;
+  border-bottom: 2px solid #3f658b;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -182,7 +188,7 @@ header h1 {
 
 /* Uniform Section Styling */
 section {
-  background-color: #285963;
+  background-color: #bcdae2;
   padding: 25px;
   border-radius: 12px;
   max-width: 50rem;
@@ -237,13 +243,13 @@ input, .login-sel {
 input:focus, .login-sel:focus {
   border-color: #DCEEF2;
   outline: none;
-  background-color: #163A3E;
+  background-color: #16263e;
 }
 
 /* Buttons */
 button:not(.disabled_ad-edit-btn) {
   padding: 12px;
-  background-color: #458D9E;
+  background-color: #24385c;
   color: #F9F6F6;
   border: none;
   border-radius: 8px;
@@ -255,13 +261,13 @@ button:not(.disabled_ad-edit-btn) {
 }
 
 button:not(.disabled_ad-edit-btn):hover {
-  background-color: #1E4A50;
+  background-color: #1f1e50;
   transform: translateY(-2px);
 }
 
 /* Login and Register Container */
 .container {
-  background-color: #285963;
+  background-color: #a4cad2;
   padding: 30px;
   border-radius: 12px;
   max-width: 280px;
@@ -311,9 +317,9 @@ button:not(.disabled_ad-edit-btn):hover {
   align-items: center;
   margin: 20px auto;
   padding: 20px;
-  border: 2px solid #285963;
+  border: 2px solid #3f658b;
   border-radius: 12px;
-  background-color: #285963;
+  background-color: #3f658b;
   max-width: 400px;
 }
 
@@ -375,10 +381,11 @@ button:not(.disabled_ad-edit-btn):hover {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* NAVBAR */
+/* NAVBAR - Header */ 
 .custom-nav, #admin-logout {
-  background-color: #285963; /* Replace with your hex code */
+  background-color: #3f658b; /* Replace with your hex code */
   color: #f4f4f4; /* Text color */
+  padding: 2.5px;
 }
 
 .custom-nav {
@@ -442,7 +449,7 @@ select.admin-sel {
   padding: 12px;
   border: 1px solid #F9F6F6;
   border-radius: 8px;
-  background-color: #1E4A50;
+  background-color: #3f658b ;
   color: #DCEEF2;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
@@ -450,10 +457,10 @@ select.admin-sel {
 }
 
 .admin-mod-text p, .admin-mod-text label{
-  color: #163A3E;
+  color: #3f658b;
 }
 .card-body{
-  color: #163A3E;
+  color: #3f658b;
 }
 
 .card-header {
@@ -647,7 +654,7 @@ select.admin-sel {
 .footer {
   max-height: 50%;
   width: 100%;
-  background: #285963;
+  background: #3f658b;
   color: #f4f4f4;
   padding: 30px 0;
   font-family: 'Play', sans-serif;
@@ -924,7 +931,7 @@ select.admin-sel {
 }
 
 .button-back:hover {
-  background-color: #1E4A50;
+  background-color: #1e2250;
   transform: translateY(-2px);
   text-decoration: none;
   color: #ffffff;
@@ -934,7 +941,7 @@ select.admin-sel {
   padding: 12px;
   border: 1px solid #F9F6F6;
   border-radius: 8px;
-  background-color: #1E4A50;
+  background-color: #231e50;
   color: #DCEEF2;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;

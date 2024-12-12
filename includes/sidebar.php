@@ -1,5 +1,5 @@
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-    <img src="images/SSITE-LOGO-CIRCLE.png" alt="LAGAY NALANG LOGO DITO" height="120px" width="120px">
+    <img src="images/Keepy-White.png" alt="Keepy Sidebar Logo" height="140px" width="200px">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
