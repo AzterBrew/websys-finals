@@ -13,7 +13,7 @@
     <h1>LOGIN</h1>
 </header>
 <body class="login-bg">
-    <div class="ssite">
+    <div class="keepy">
         <img src="images/Keepy Logo.png" alt="Keepy Logo" style="width: 250px;height:auto;">
         <h1 style="text-align: center">Inventory Management System</h1>
     </div>
