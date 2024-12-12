@@ -1,4 +1,4 @@
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+<div class="offcanvas offcanvas-start sidebar-color" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <img src="images/Keepy-White.png" alt="Keepy Sidebar Logo" height="140px" width="200px">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>

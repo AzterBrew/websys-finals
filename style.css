@@ -545,7 +545,7 @@ select.admin-sel {
 
 /* Offcanvas Styling */
 .offcanvas {
-  background-color: #285963;
+  background-color: #285963 !important;
   color: #F9F6F6;
   padding: 20px;
   border: none;
@@ -1067,4 +1067,8 @@ select.admin-sel {
 .order-cont {
   display: block;
   width: 100%;
+}
+
+.offcanvas .sidebar-color {
+  background-color: #16263e !important;
 }
