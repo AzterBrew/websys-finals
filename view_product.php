@@ -23,11 +23,9 @@ require "dbcon.php";
                                 <th>ID</th>
                                 <th>Item Name</th>
                                 <th>Image</th>
-                                <th>Specification</th>
                                 <th>Description</th>
-                                <th>Type</th>
-                                <th>Price</th>
-                                <th>Discounted Price</th>
+                                <th>Supplier</th>
+                                <th>Stock</th>
                                 <th>Category</th>
                                 <th>Date Created</th>
                                 <th>Creator Admin ID</th>
@@ -58,11 +56,9 @@ require "dbcon.php";
                                             
                                             
                                             </td>
-                                            <td><?=$item['item_spec']?> </td>
                                             <td><?=htmlspecialchars($item['item_desc'])?> </td>
-                                            <td><?=$item['item_type']?> </td>
-                                            <td><?=$item['item_price']?> </td>
-                                            <td><?=$item['item_discprice']?> </td>
+                                            <td><?=$item['supplier_name']?> </td>
+                                            <td><?=$item['stock']?> </td>
                                             <td><?=$item['category']?> </td>
                                             <td><?=$item['date_created']?> </td>
                                             <td><?=$item['admin_creator']?> </td>
@@ -140,24 +136,11 @@ include 'includes/footer.php';
 function RetrieveAll($table, $con, $start, $limit)
 {
     
-    $query = "SELECT 
-                i.item_id, 
-                i.item_name,
-                i.item_img,
-                i.item_spec,
-                i.item_desc,
-                i.item_type,
-                i.item_price,
-                i.item_discprice,
-                cat.category_name AS category, 
-                i.date_created, 
-                CONCAT('admin', i.admin_creator, ' : ', us.firstname) AS admin_creator, 
-                i.record_status 
-              FROM items i 
-              LEFT JOIN admin a ON i.admin_creator = a.admin_id 
-              LEFT JOIN user_information us ON a.userinfo_id = us.userinfo_id
-              LEFT JOIN categories cat ON i.cat_id = cat.cat_id 
-              LIMIT ?, ?;"; // Use LIMIT with placeholders for pagination
+    $query = "SELECT i.item_id, i.item_name,i.item_img, i.item_desc, s.supplier_name,i.stock, c.category,i.date_created,CONCAT(a.admin_firstname, ' ' , a.admin_surname) AS admin_creator, i.record_status 
+                FROM items i LEFT JOIN administrators a ON i.admin_creator = a.admin_id
+                LEFT JOIN categories c ON i.cat_id=c.cat_id
+                LEFT JOIN supplier s ON i.supplier_id=s.supplier_id
+                LIMIT ?, ?;"; // Use LIMIT with placeholders for pagination
 
     $stmt = $con->prepare($query);
     $stmt->bind_param("ii", $start, $limit);

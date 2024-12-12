@@ -963,17 +963,17 @@ select.admin-sel {
   background-color: #163A3E;
 }
 /* Form Control Styling */
-.form-control {
+/* .form-control {
   width: 100%;
   padding: 12px;
-  border: 1px solid #F9F6F6;
+  border: 1px solid #163A3E;
   border-radius: 8px;
   background-color: #1E4A50;
-  color: #DCEEF2;
+  color: #163A3E;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   transition: border-color 0.3s ease, background-color 0.3s ease;
-}
+} */
 
 .form-control:focus {
   border-color: #DCEEF2;
@@ -1015,10 +1015,10 @@ select.admin-sel {
 .content input {
   width: 100%;
   padding: 12px;
-  border: 1px solid #F9F6F6;
+  border: 1px solid #163A3E;
   border-radius: 8px;
-  background-color: #1E4A50;
-  color: #DCEEF2;
+  /* background-color: #1E4A50; */
+  color: #163A3E;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   transition: border-color 0.3s ease, background-color 0.3s ease;
