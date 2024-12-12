@@ -14,7 +14,7 @@ if(isset($_POST['cat-edit-btn'])){ //IF EDITING RECORD
         if ($stmt->execute()) {
             $results = $stmt->get_result(); // Always return the result object        
             $cat_row = mysqli_fetch_assoc($results);            
-            $cat_name = $cat_row['category_name'];
+            $cat_name = $cat_row['category'];
             $cat_stat = $cat_row['record_status'];
         } else {
             echo "Error: " . $stmt->error;
@@ -43,7 +43,7 @@ if(isset($_POST['cat-edit-btn'])){ //IF EDITING RECORD
                     </h2>
                 </div>
                 <div class="card-body">
-                    <form action="back_proc.php" method="POST">
+                    <form action="back-end/back_proc.php" method="POST">
                         <div class="row">
                             <div class="col-md-6">
                                 <input type="hidden" name="catid" value="<?= $catid; ?>"> <!-- Pass the category ID -->
