@@ -4,20 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="images/Keepy Logo.png"alt="Site Logo" style="width:100px, ">
+    <link rel="icon" href="images/Keepy Logo.png"alt="Site Logo" style="width:100px;height:auto;">
     <title> Keepy | Login </title>
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <header>
-    <!-- PRANS INSERT LOGO HERE -->
     <img src="images/Keepy Logo.png" alt="Keepy Logo"  style="width:100px;height:auto;">
     <h1>LOGIN</h1>
 </header>
 <body class="login-bg">
     <div class="ssite">
-        <!-- PRANS INSERT LOGO HERE -->
         <img src="images/Keepy Logo.png" alt="Keepy Logo" style="width: 250px;height:auto;">
-        <h1 style="text-align: center"></h1>
+        <h1 style="text-align: center">Inventory Management System</h1>
     </div>
         <div class="login-container">
          <h2>Log In</h2>

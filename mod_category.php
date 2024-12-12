@@ -43,7 +43,7 @@ if(isset($_POST['cat-edit-btn'])){ //IF EDITING RECORD
                     </h2>
                 </div>
                 <div class="card-body">
-                    <form action="admin_proc.php" method="POST">
+                    <form action="back_proc.php" method="POST">
                         <div class="row">
                             <div class="col-md-6">
                                 <input type="hidden" name="catid" value="<?= $catid; ?>"> <!-- Pass the category ID -->
