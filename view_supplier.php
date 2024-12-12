@@ -23,6 +23,7 @@ require "dbcon.php";
                         <tr>
                             <th>ID</th>
                             <th>Supplier Name</th>
+                            <th>Products</th>
                             <th>Supplier Location</th>
                             <th>Contact Number</th>
                             <th>Email</th>
@@ -42,16 +43,7 @@ require "dbcon.php";
                             
                             // Fetch records for the current page
                             $categoryrecords = RetrieveAll("categories", $con, $start, $limit);
-                            // $categoryrecords = RetrieveAll("categories", $con);
-                            // $totalPages = pagination($con);
-
-                            // function RetrieveAll($table, $con)
-                            // {
-                            //     $query = 'SELECT cat.cat_id, cat.category_name,cat.date_created, CONCAT("admin",cat.admin_creator," : ",us.firstname) AS admin_creator,cat.record_status FROM categories cat LEFT JOIN admin a ON cat.admin_creator = a.admin_id LEFT JOIN user_information us ON a.userinfo_id = us.userinfo_id;';
-                            //     $stmt = $con->prepare($query);
-                            //     $stmt->execute();
-                            //     return $stmt->get_result(); // Always return the result object
-                            // }
+                       
 
                             if (mysqli_num_rows($categoryrecords) > 0) {
                                 foreach ($categoryrecords as $item) :
@@ -59,6 +51,31 @@ require "dbcon.php";
                                     <tr>
                                         <td><?=$item['supplier_id']?> </td>
                                         <td><?=$item['supplier_name']?> </td>
+                                        <td>
+                                            <ul>
+<?php
+                                        $query = "SELECT * FROM items WHERE supplier_id = ?";
+                                        $stmt = $con->prepare($query);
+                                        $stmt->bind_param("i",$item['supplier_id']);
+                                        $stmt->execute();
+                                        $result = $stmt->get_result();
+                                        if ($result->num_rows > 0) {
+                                            // $row = $result->fetch_assoc();
+                                            // // foreach($row as $prod){
+                                            // //     $product = $row['item_name'];
+                                            // //     echo $product . '<br>';
+                                            // // }
+                                            // $product = $row['item_name'];
+                                            // echo $product;
+                                            while ($row = $result->fetch_assoc()) {
+                                                echo '<li>' .($row['item_name']) . '</li>';
+                                            }
+                                        } else {
+                                            echo '<td>No products ordered yet</td>';
+                                        }
+     ?>                                   
+                                            </ul>
+                                        </td>
                                         <td><?=$item['supplier_location']?> </td>
                                         <td><?=$item['supplier_contact']?> </td>
                                         <td><?=$item['supplier_email']?> </td>

@@ -575,10 +575,10 @@ select.admin-sel {
 }
 
 .offcanvas a:hover {
-  color: #ffffff;
+  color: #F9F6F6;
   text-decoration: none;
   border: none;
-  background-color: transparent;
+  background-color: #3f658b;
 }
 
 .offcanvas img {
