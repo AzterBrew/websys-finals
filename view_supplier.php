@@ -57,16 +57,19 @@ require "dbcon.php";
                                 foreach ($categoryrecords as $item) :
                         ?>
                                     <tr>
-                                        <td><?=$item['cat_id']?> </td>
-                                        <td><?=$item['category']?> </td>
+                                        <td><?=$item['supplier_id']?> </td>
+                                        <td><?=$item['supplier_name']?> </td>
+                                        <td><?=$item['supplier_location']?> </td>
+                                        <td><?=$item['supplier_contact']?> </td>
+                                        <td><?=$item['supplier_email']?> </td>
                                         <td><?=$item['date_created']?> </td>
                                         <td><?=$item['admin_creator']?> </td>
                                         <td><?=$item['record_status']?> </td>
                                         <td>
                                             <!-- <a href="mod_category.php" class="btn">Edit Record</a> -->
                                              <div class="col-md-9 ms-auto me-auto" style="text-align:center">
-                                                <form action="mod_category.php?catidlabel=<?=$item['cat_id']?>" method="post">
-                                                    <button type="submit" name="cat-edit-btn">Edit Records</button>
+                                                <form action="mod_supplier.php?supidlabel=<?=$item['supplier_id']?>" method="post">
+                                                    <button type="submit" name="sup-edit-btn">Edit Records</button>
                                                 </form>
                                              </div>                                             
                                         </td>
@@ -85,15 +88,7 @@ require "dbcon.php";
                         </tbody>
                     </table>
                     <div>
-                        <!-- <nav>
-                            <ul class="pagination">
-                                <?php for ($i = 1; $i <= $totalPages; $i++) {?>
-                                    <li class="page-item <?=($page === $i) ? 'active' : ''?>">
-                                        <a class="page-link" href="?page=<?=$i;?>"><?=$i;?></a>
-                                    </li>
-                                <?php }?>
-                            </ul>
-                        </nav> -->
+                        
 
                         <nav>
                             <ul class="pagination">
@@ -116,8 +111,8 @@ require "dbcon.php";
                             </ul>
                         </nav>
                         <div class="col-md-4 ms-auto">
-                            <form action="mod_category.php?catidlabel=0" method="post">
-                                <button type="submit" name="cat-add-btn">Add New Category</button>
+                            <form action="mod_supplier.php?supidlabel=0" method="post">
+                                <button type="submit" name="sup-add-btn">Add New Supplier</button>
 
                             </form>
                         </div>
@@ -143,13 +138,16 @@ require "dbcon.php";
 function RetrieveAll($table, $con, $start, $limit)
 {
     $query = "SELECT 
-                cat.cat_id, 
-                cat.category, 
-                cat.date_created, 
-                CONCAT('admin', cat.admin_creator, ' : ', a.admin_firstname) AS admin_creator, 
-                cat.record_status 
-              FROM $table cat 
-              LEFT JOIN administrators a ON cat.admin_creator = a.admin_id 
+                s.supplier_id, 
+                s.supplier_name, 
+                s.supplier_location, 
+                s.supplier_contact, 
+                s.supplier_email, 
+                s.date_created, 
+                CONCAT('admin', s.admin_creator, ' : ', a.admin_firstname) AS admin_creator, 
+                s.record_status 
+              FROM supplier s 
+              LEFT JOIN administrators a ON s.admin_creator = a.admin_id  
               LIMIT ?, ?;"; // Use LIMIT with placeholders for pagination
 
     $stmt = $con->prepare($query);
@@ -164,7 +162,7 @@ function pagination($con)
     $limit = 10;
 
     // Fetch total number of rows
-    $totalQuery = "SELECT COUNT(*) as total FROM categories";
+    $totalQuery = "SELECT COUNT(*) as total FROM supplier";
     $totalResult = mysqli_fetch_assoc(mysqli_query($con, $totalQuery));
     $total = $totalResult['total'];
 

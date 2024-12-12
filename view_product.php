@@ -136,7 +136,7 @@ include 'includes/footer.php';
 function RetrieveAll($table, $con, $start, $limit)
 {
     
-    $query = "SELECT i.item_id, i.item_name,i.item_img, i.item_desc, s.supplier_name,i.stock, c.category,i.date_created,CONCAT(a.admin_firstname, ' ' , a.admin_surname) AS admin_creator, i.record_status 
+    $query = "SELECT i.item_id, i.item_name,i.item_img, i.item_desc, s.supplier_name,i.stock, c.category,i.date_created,CONCAT('admin', c.admin_creator, ' : ', a.admin_firstname) AS admin_creator, i.record_status 
                 FROM items i LEFT JOIN administrators a ON i.admin_creator = a.admin_id
                 LEFT JOIN categories c ON i.cat_id=c.cat_id
                 LEFT JOIN supplier s ON i.supplier_id=s.supplier_id

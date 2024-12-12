@@ -16,11 +16,11 @@ include 'middleware.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css" >
 </head>
-<body>
-
+<body class="content">
+<main>
 <div class="custom-nav">
 <?php 
 include 'navbar.php'; 
 include 'sidebar.php'; 
 ?>
-            <div class="content">
+            <div>

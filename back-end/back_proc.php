@@ -70,7 +70,7 @@ else if(isset($_POST['item-confirm-btn'])){   //FOR ITEM PROCESSING
         if (!empty($_FILES['item_img']['name'])) {
             // New image uploaded
             $item_img = $_FILES['item_img']['name'];
-            $path = "record_images/item_images/";
+            $path = "../record_images/item_images/";
             $item_img_ext = pathinfo($item_img, PATHINFO_EXTENSION);
             $imgfile_name = $item_id . "_" . time() . '.' . $item_img_ext;
             move_uploaded_file($_FILES['item_img']['tmp_name'], $path . $imgfile_name);
@@ -106,7 +106,7 @@ else if(isset($_POST['item-confirm-btn'])){   //FOR ITEM PROCESSING
         $admin_id = $_SESSION['uid'];
 
         $item_img = $_FILES['item_img']['name'];
-            $path = "record_images/item_images/";
+            $path = "../record_images/item_images/";
             $item_img_ext = pathinfo($item_img,PATHINFO_EXTENSION);
             $imgfile_name = $item_id."_".time(). '.' . $item_img_ext;
             move_uploaded_file($_FILES['item_img']['tmp_name'], $path . $imgfile_name);
@@ -135,6 +135,72 @@ else if(isset($_POST['item-confirm-btn'])){   //FOR ITEM PROCESSING
 } else if (isset($_POST['item-cancel-btn'])){
     header("Location: ../view_product.php");
 }
+
+
+
+
+
+//THIS IS FOR CONFIRMING AND INSERTING / UPDAITNG SUPPLIER RECORD
+
+
+else if(isset($_POST['sup-confirm-btn'])){   //FOR ITEM PROCESSING
+    $isEdit = $_POST['sup-confirm-btn'];
+    $sup_name = $_POST['sup_name'];
+    $sup_location = $_POST['sup_location'];
+    $sup_contact = $_POST['sup_contact'];
+    $sup_email = $_POST['sup_email'];
+    
+    
+    if($isEdit === "1"){
+        $sup_id = $_POST['sup_id'];
+        $sup_recstat = $_POST['recstat'];
+
+        $query = "UPDATE supplier SET supplier_name = ?, supplier_location=?, supplier_contact = ?, supplier_email = ?, record_status = ? WHERE supplier_id = ?";
+        // 
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("sssssi", $sup_name, $sup_location, $sup_contact, $sup_email, $sup_recstat, $sup_id);
+
+        if ($stmt->execute()) {
+            // echo $sup_recstat ;
+            header("Location: ../view_supplier.php");
+            exit();
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+    } else if($isEdit === "0") {
+        $sup_id = TableRowCount("supplier",$con)+1;
+        $admin_id = $_SESSION['uid'];
+
+        $query = "INSERT INTO supplier(supplier_id, supplier_name, supplier_location, supplier_contact, supplier_email, admin_creator, date_created, record_status)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
+
+        $stmt = $con->prepare($query);
+        $date_created = date("Y-m-d H:i:s"); 
+        $record_status = 'Active'; 
+        $stmt->bind_param("issssiss", $sup_id, $sup_name, $sup_location, $sup_contact, $sup_email, $admin_id, $date_created, $record_status);
+
+        if ($stmt->execute()) {
+            header("Location: ../view_supplier.php");
+            exit();
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+
+    } else {
+        echo "Invalid action.";
+    } 
+
+} else if (isset($_POST['sup-cancel-btn'])){
+    header("Location: ../view_supplier.php");
+}
+
+
+
+
+
+
 
 
 

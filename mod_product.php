@@ -190,7 +190,7 @@ if(isset($_POST['item-edit-btn'])){ //IF EDITING RECORD
                                                 // Loop through the records and create options
                                                 while ($row = mysqli_fetch_assoc($result)) {
                                                     if($row['record_status']=="Active"){
-                                                        echo '<option value="' . $row['cat_id'] . '">' . htmlspecialchars($row['category_name']) . '</option>';
+                                                        echo '<option value="' . $row['cat_id'] . '">' . htmlspecialchars($row['category']) . '</option>';
                                                     $count++;
                                                     }
                                                 }
@@ -283,8 +283,6 @@ if(isset($_POST['item-edit-btn'])){ //IF EDITING RECORD
                                 <?php
                                 }
                                 ?>
-
-                                
 
                             </div>
                             <div>

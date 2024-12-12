@@ -592,13 +592,28 @@ select.admin-sel {
   padding: 2px;
 }
 
-.page-container{
+/* .page-container{
   background-image: url('images/Messy-Keepy.png');
-}
+  bottom: 0%;
+} */
 
 .content{
   background-image:url('images/Messy-Keepy.png');
+  /* background-image:url('images/Keepy-SideBar.png'); */
+  height: 100%;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-repeat: repeat;
+  background-size: 180px;
+  background-color: #F9F6F6;
+  /* opacity: 0.1; */
+  /* z-index: -1; */
 }
+ 
 /* Admin */
 .logossite {
   display: flex;

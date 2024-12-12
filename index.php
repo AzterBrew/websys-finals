@@ -24,7 +24,7 @@
          <form action="back-end/back_login.php" method="post">
             <div class="form-group">
                 <label for="username">Email:</label>
-                <input type="text" id="username" name="username" required>
+                <input type="email" id="username" name="username" required>
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
