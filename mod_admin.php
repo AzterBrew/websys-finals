@@ -157,7 +157,7 @@ if(isset($_POST['ad-edit-btn'])){ //IF EDITING RECORD
                                         <label for="confirm_password">Confirm Password:</label>
                                         <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" class="form-control" onkeyup="confirmPass();" required><br><br>
 
-
+                                        
                                         
                                           
                                         </div>
