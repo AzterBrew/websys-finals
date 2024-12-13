@@ -224,8 +224,9 @@ form {
 }
 
 label {
-  font-size: 1.5rem;
-  color: #CEDFE3;
+  font-size: 30px;
+  font-weight:bold;
+  color: #ffffff;
 }
 
 
@@ -383,7 +384,7 @@ button:not(.disabled_ad-edit-btn):hover {
 /* NAVBAR - Header */ 
 .custom-nav, #admin-logout {
   background-color: #3f658b; /* Replace with your hex code */
-  color: #f4f4f4; /* Text color */
+  color: #ffffff; /* Text color */
   padding: 2.5px;
 }
 
@@ -659,8 +660,8 @@ input[type="number"] {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   padding:50px;
   margin-top: 70px;
-  width: 600px;
-  height: 200px;
+  width: 1250px;
+  height: 150px;
   color: white;
   margin-left:auto;
   margin-right: auto;
@@ -1177,4 +1178,97 @@ input[type="number"] {
 
 .offcanvas .sidebar-color {
   background-color: #16263e !important;
+}
+
+.dashboard-container {
+  width: 1250px;
+  height: 425px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 10px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.box {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  font-size: 12px;
+}
+
+/* Quick Actions Container - Flexbox layout */
+.boxopt {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  font-size: 12px;
+  grid-column: span 2;
+  display: flex;
+  align-items: flex-start; 
+}
+
+.boxopt h3 {
+  margin-right: 13px;
+  white-space: nowrap; 
+}
+
+.boxopt .buttons {
+  display: flex;
+  flex-direction: column; 
+  gap: 3px; 
+}
+
+.overview-panel {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.overview-panel div {
+  width: 30%; /* Reduced width to fit in the container */
+}
+
+.alerts .alert-item {
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+button {
+  padding: 3px 5px;
+  margin: 1px; 
+  font-size: 12px; 
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+h3 {
+  font-size: 1em; /* Smaller heading size */
+  margin-bottom: 8px;
+}
+
+p {
+  margin: 0;
+}
+
+/* Span Total Products box across two columns */
+.total-products {
+  grid-column: span 2; /* Spans across two columns */
 }
