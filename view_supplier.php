@@ -70,9 +70,7 @@ require "dbcon.php";
                                             while ($row = $result->fetch_assoc()) {
                                                 echo '<li>' .($row['item_name']) . '</li>';
                                             }
-                                        } else {
-                                            echo '<td>No products ordered yet</td>';
-                                        }
+                                        } 
      ?>                                   
                                             </ul>
                                         </td>

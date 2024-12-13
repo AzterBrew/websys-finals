@@ -1272,3 +1272,7 @@ p {
 .total-products {
   grid-column: span 2; /* Spans across two columns */
 }
+.total-products p {
+  font-size: 20px !important;
+}
+  

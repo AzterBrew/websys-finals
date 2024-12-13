@@ -202,13 +202,23 @@ else if(isset($_POST['sup-confirm-btn'])){   //FOR ITEM PROCESSING
 
 else if(isset($_POST['ord-confirm-btn'])){   //FOR ITEM PROCESSING
     $isEdit = $_POST['ord-confirm-btn'];
+    $item_id = $_POST['item_id']; 
     // $item_name = $_POST['item_name'];
     // $item_desc = htmlspecialchars($_POST['item_desc']);
     // $item_stock = $_POST['item_stock'];
     
-    
+    echo $item_id;
     
     if($isEdit === "1"){
+        $query = "SELECT * FROM items WHERE item_id = " . $item_id ; // Use LIMIT with placeholders for pagination
+
+        $stmt = $con->prepare($query);
+        $stmt->execute();
+        $results = $stmt->get_result();
+        while ($item = $results->fetch_assoc()) {
+            $item_stock = $item['stock'];
+        }
+
         $order_id = $_POST['order_id'];
         $order_status = $_POST['order_status'];
         $q_initreceived = $_POST['q_received'];
@@ -221,6 +231,17 @@ else if(isset($_POST['ord-confirm-btn'])){   //FOR ITEM PROCESSING
         $stmt = $con->prepare($query);
         $date_created = date("Y-m-d H:i:s"); 
         $stmt->bind_param("issi", $quantity_received,$date_created, $order_status, $order_id);
+        $stmt->execute();
+        //UPDATE ITEMS TABLE
+        $query = "UPDATE items SET stock = ? WHERE item_id = ?";
+        // 
+        $stock = $item_stock + $quantity_received;
+        echo $stock;
+
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("ii", $stock, $item_id);
+        $stmt->execute();
+
         if ($stmt->execute()) {
             header("Location: ../view_order.php");
             exit();
@@ -230,8 +251,7 @@ else if(isset($_POST['ord-confirm-btn'])){   //FOR ITEM PROCESSING
 
     } else if($isEdit === "0") {
         $supplier_id = $_POST['supplier_id'];
-    $item_id = $_POST['item_id']; 
-    $quantity_ordered = $_POST['quantity'];
+        $quantity_ordered = $_POST['quantity'];
         $order_id = TableRowCount("orders",$con)+1;
         $admin_id = $_SESSION['uid'];
 

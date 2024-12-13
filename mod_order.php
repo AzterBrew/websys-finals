@@ -25,6 +25,7 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
             $supplier_email = $item_row['supplier_email'];
             $order_status = $item_row['order_status'];
             $rec_stat = $item_row['record_status'];
+            $item_id = $item_row['item_id'];
 
         } else {
             echo "Error: " . $stmt->error;
@@ -60,6 +61,7 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
                                     <?php }?>
                                 <input type="hidden" name="order_id" value="<?= $order_id; ?>"> <!-- Pass the category ID -->
                                 <input type="hidden" name="q_received" value="<?= $q_received; ?>"> <!-- Pass the category ID -->
+                                <input type="hidden" name="item_id" value="<?= $item_id; ?>"> <!-- Pass the category ID -->
                                 <?php
                                     // IF EDIT RECORD
                                     if($isEdit){?> 

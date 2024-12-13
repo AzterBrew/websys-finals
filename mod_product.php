@@ -79,7 +79,7 @@ if(isset($_POST['item-edit-btn'])){ //IF EDITING RECORD
                                         <label for="">
                                             Item Stock
                                         </label>
-                                        <input type="number" value="<?= $item_stock ?>" name="item_stock" placeholder="Enter Stock" class="form-control" required step="1" min="0"> 
+                                        <input type="number" value="<?= $item_stock ?>" name="item_stock"    class="form-control" style="width:100%;" required step="1" min="0"> 
                                         <br>
                                         <br>
 
@@ -171,7 +171,7 @@ if(isset($_POST['item-edit-btn'])){ //IF EDITING RECORD
                                         <label for="">
                                             Item Stock
                                         </label>
-                                        <input type="number" name="item_stock" placeholder="Enter Stock" class="form-control" required step="1" min="0"> 
+                                        <input type="number" name="item_stock" class="form-control" required step="1" min="0"> 
                                         <br>
                                         <br>
                                         <label for="">
