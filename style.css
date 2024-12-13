@@ -586,6 +586,44 @@ select.admin-sel {
   margin: 0 auto;
 }
 
+.supplier-order {
+  display:  inline-flex !important;
+  width: 100%;
+}
+
+.supplier-order div {
+  /* margin: 0; */
+  width: 100%;
+  margin: auto 3%;
+}
+
+#quantity-label{
+  width: 100%;
+  text-align: right;
+}
+
+#order-sel {
+  width: 30%;
+  margin: 2% 3%;
+}
+
+.quantity-container {
+  display:  inline-flex !important;
+  width: 40%;  
+  max-width: fit-content;
+  margin-left: 5%;
+}
+
+input[type="number"] {
+  width: 60px;
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  margin: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  }
+
 .sidebar{
   background-color: #3f658b;
   border-radius: 12px;
@@ -1048,7 +1086,7 @@ select.admin-sel {
 }
 
 .content input {
-  width: 100%;
+  /* width: 100%; */
   padding: 12px;
   border: 1px solid #163A3E;
   border-radius: 8px;

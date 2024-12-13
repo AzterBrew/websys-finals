@@ -12,9 +12,9 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
               LEFT JOIN items i ON o.item_id=i.item_id
               LEFT JOIN supplier s ON o.supplier_id=s.supplier_id
               LEFT JOIN administrators a ON o.admin_order = a.admin_id    
-              WHERE o.record_status = 'Active' AND  order_id = ?";
+              WHERE AND  order_id = ?";
         $stmt = $con->prepare($getnamequery);
-        $stmt->bind_param("s",$order_id);
+        $stmt->bind_param("i",$order_id);
         if ($stmt->execute()) {
             $results = $stmt->get_result(); // Always return the result object        
             $item_row = mysqli_fetch_assoc($results);            
@@ -32,7 +32,7 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
         $isEdit = True;
 
     }                                     
-} else if (isset($_POST['sup-add-btn'])){ //IF NEW RECORD
+} else if (isset($_POST['ord-add-btn'])){ //IF NEW RECORD
     $sup_id = TableRowCount("supplier",$con)+1;
     $isEdit = False;
 
@@ -49,13 +49,15 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
             <div class="card">
                 <div class="card-header">
                     <h2 style="font-family: 'Inter', sans-serif; font-size: 40px; font-weight: bold;">
-                        Modify Item
+                        Order Product
                     </h2>
                 </div>
                 <div class="card-body">
                     <form action="back-end/back_proc.php" method="POST" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col-md-6">
+                            <?php if($isEdit){?> 
+                                <div class="col-md-6">
+                                    <?php }?>
                                 <input type="hidden" name="sup_id" value="<?= $sup_id; ?>"> <!-- Pass the category ID -->
                                 <?php
                                     // IF EDIT RECORD
@@ -92,39 +94,100 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
                                     // IF NEW RECORD                                
                                     }else {?>
                                         <label for="">
-                                            Supplier Name
+                                            Product Name
                                         </label>
-                                        <input type="text" name="sup_name" placeholder="Enter Supplier Name" class="form-control" required>                                          
-                                        <br>                                      
-                                        <label for="">
-                                            Supplier Location
-                                        </label>
-                                        <input type="text" name="sup_location" placeholder="Enter Supplier Location" class="form-control" required>                                          
-                                        <br>  
-                                        <label for="">
-                                            Supplier Contact
-                                        </label>
-                                        <input type="tel" name="sup_contact" placeholder="Enter their  Contact Number" class="form-control" required>                                          
-                                        <br>  
-                                        <label for="">
-                                            Supplier Email
-                                        </label>
-                                        <input type="email" name="sup_email" placeholder="Enter Supplier Email" class="form-control" required>                                          
-                                        <br>                                    
+                                        <br>
+                                        <select class="admin-sel" name="item_id" id="order-sel">
+
+                                        <?php
+                                            $catquery = "SELECT * FROM items WHERE record_status = 'Active'";
+                                            $result = mysqli_query($con, $catquery);
+
+                                            // Check if there are any categories
+                                            if (mysqli_num_rows($result) > 0) {
+                                                $count = 0;
+                                                // Loop through the records and create options
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    if($row['record_status']=="Active"){
+                                                        echo '<option value="' . $row['item_id'] . '">' . htmlspecialchars($row['item_name']) . '</option>';
+                                                    $count++;
+                                                    }
+                                                }
+                                                if($count=== 0){
+                                                    echo '<option value="0">No items available</option>';                                                
+                                                }
+                                            } else {
+                                                // If no categories exist, show a message
+                                                echo '<option value="0">No items available</option>';
+                                            }                                    
+                                        ?>
+                                        
+                                        </select>
+                                        <br>
+                                        <br>
+                                        <div class="supplier-order">
+                                            <div >
+                                        <br>
+                                                <label for="">Supplier</label>
+                                            </div>
+                                            <div>
+                                                <label for="" id="quantity-label">Order Quantity : </label>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <!-- THIS IS FOR LOOP -->
+                                        <div class="supplier-order">
+                                            <div >
+                                        <select class="admin-sel" name="supplier_id" id="">
+
+                                        <?php
+                                            $catquery = "SELECT * FROM supplier";
+                                            $result = mysqli_query($con, $catquery);
+                                            
+                                            // Check if there are any categories
+                                            if (mysqli_num_rows($result) > 0) {
+                                                $count = 0;
+                                                // Loop through the records and create options
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    if($row['record_status']=="Active"){
+                                                        echo '<option value="' . $row['supplier_id'] . '">' . htmlspecialchars($row['supplier_name']) . '</option>';
+                                                    $count++;
+                                                    }
+                                                }
+                                                if($count=== 0){
+                                                    echo '<option value="0">No Supplier Record Available</option>';                                                
+                                                }
+                                            } else {
+                                                // If no categories exist, show a message
+                                                echo '<option value="0">No Supplier Record Available</option>';
+                                            }                                    
+                                        ?>
+                                        
+                                        </select>
+                                        <br>
+                                            </div>
+                                            <div class="quantity-container">
+                                                <button type="button" class="quantity-btn" id="minus">-</button>
+                                                <input type="number" id="quantity" name="quantity" value="1" min="1" step="1" class="form-control supplier-order" required>
+                                                <button type="button" class="quantity-btn" id="plus">+</button>
+                                            </div>
+                                        </div>
+                                        <br>
                                         <br>
 
                                         <?php
                                     }
                                 ?>
                             </div>
-                            <div class="col-md-6">
-                                <label for="" class="cat-label">
-                                    Supplier ID : <?=$sup_id?>
-                                </label>        
-                                <br>
-                                <br>
+                            
                                 <?php 
                                 if($isEdit){?> 
+                                    <div class="col-md-6">
+                                    <label for="" class="cat-label">
+                                        Supplier ID : <?=$sup_id?>
+                                    </label>        
+                                    <br>
+                                    <br>
                                     <label for="">
                                         Supplier Status
                                     </label>
@@ -145,17 +208,30 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
                                         ?>
                                     
                                     </select>
+                                </div>
+
                                 <?php
                                 }
-                                ?>
+                                ?>                                
 
-                                
-
-                            </div>
-                            <div>
+                            
                                 <br>
-                                <button type="submit" value="<?= $isEdit ? '1' : '0'; ?>" name="sup-confirm-btn">Confirm</button>
-                                <button type="submit" name="sup-cancel-btn" formnovalidate>Cancel</button>
+                                <?php 
+                                    if($isEdit){ ?>
+                                    <div>
+                                        <button type="submit" value="<?= $isEdit ? '1' : '0'; ?>" name="sup-confirm-btn">Confirm Order</button>
+                                        <button type="submit" name="sup-cancel-btn" formnovalidate>Cancel</button>
+                                    </div>
+                                    <?php } else {
+                                        ?>
+                                    <div style="margin-left:auto; margin-right:auto">
+                                        <button style="align-items: center" type="submit" value="<?= $isEdit ? '1' : '0'; ?>" name="sup-confirm-btn">Confirm Order</button>
+                                        <button type="submit" name="sup-cancel-btn" formnovalidate>Cancel</button>
+                                    </div>
+                                    <?php
+                                    }
+                                ?>
+                                
                             </div>
                         </div>
                     </form>                
@@ -164,7 +240,23 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
         </div>
     </div>
 
+    <script>
+    // JavaScript for handling the quantity increment and decrement
+    document.getElementById('plus').addEventListener('click', function() {
+        let quantityInput = document.getElementById('quantity');
+        let value = parseInt(quantityInput.value);
+        quantityInput.value = value + 1;
+    });
 
+    document.getElementById('minus').addEventListener('click', function() {
+        let quantityInput = document.getElementById('quantity');
+        let value = parseInt(quantityInput.value);
+        if (value > 1) {
+            quantityInput.value = value - 1;
+        }
+    });
+
+</script>
 
 
 
