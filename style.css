@@ -297,18 +297,17 @@ button:not(.disabled_ad-edit-btn):hover {
   width: 100%;
 }
 
-/* Admin Container
+/* Admin Container */
 .admin-container {
-  background-color: #CEDFE3;
+  background-color: #899fb5 !important;
   padding: 30px;    
   border-radius: 5px;
   max-width: 90%;
   margin: 5% auto;    
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif; 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-*/
 
 /* ADMINLOGIN logossite Section */
 .logossite {
