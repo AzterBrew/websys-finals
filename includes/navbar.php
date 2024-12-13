@@ -15,7 +15,7 @@
 
         <ul class="navbar-nav me-auto">
           <li class="nav-item active" id="home-admin">
-            <a class="nav-link" href="home.php"><b>Home</b> <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="home.php"><b>Dashboard</b> <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active" id="home-admin">
             <a class="nav-link" href="#"><b>Account</b> <span class="sr-only">(current)</span></a>

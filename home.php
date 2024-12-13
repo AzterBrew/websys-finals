@@ -19,8 +19,18 @@ $result = $stmt->get_result();
 
 ?>
         <div class="page-container">
-            <div>
-                <h1>Hello, <?=$username?></h1>
+            <div class="hello-username">
+                <h1>Welcome back to your dashboard, <?=$username?>!</h1>
+            
+        <div class="dashboard">
+
+            <h1>dashboard</h1>
+
+
+
+
+        </div>
+
             
 
                 <!-- <hr> -->
