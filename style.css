@@ -452,7 +452,7 @@ select.admin-sel {
   background-color: #3f658b ;
   color: #DCEEF2;
   font-family: 'Inter', sans-serif;
-  font-size: 1rem;
+  font-size: 18px;
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
@@ -589,12 +589,36 @@ select.admin-sel {
 .supplier-order {
   display:  inline-flex !important;
   width: 100%;
+  padding: 0 2em;
+  /* align-items:flex-start; */
+}
+
+/* .supplier-order div { */
+  /* margin: 0; */
+  /* width: 50%; */
+  /* width: 20em;
+  margin: auto 3%;
+}
+
+#quantity-label{
+  width: 100%;
+  text-align: right;
+}
+
+#order-sel {
+  width: 30%;
+  margin: 2% 3%;
+} */
+
+
+.supplier-order {
+  display:  inline-flex !important;
+  width: 100%;
 }
 
 .supplier-order div {
   /* margin: 0; */
   width: 100%;
-  margin: auto 3%;
 }
 
 #quantity-label{

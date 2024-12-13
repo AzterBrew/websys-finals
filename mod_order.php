@@ -12,7 +12,7 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
               LEFT JOIN items i ON o.item_id=i.item_id
               LEFT JOIN supplier s ON o.supplier_id=s.supplier_id
               LEFT JOIN administrators a ON o.admin_order = a.admin_id    
-              WHERE AND  order_id = ?";
+              WHERE order_id = ?";
         $stmt = $con->prepare($getnamequery);
         $stmt->bind_param("i",$order_id);
         if ($stmt->execute()) {
@@ -24,6 +24,7 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
             $supplier_name = $item_row['supplier_name'];
             $supplier_email = $item_row['supplier_email'];
             $order_status = $item_row['order_status'];
+            $rec_stat = $item_row['record_status'];
 
         } else {
             echo "Error: " . $stmt->error;
@@ -42,7 +43,7 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
 
 <!-- CONTENTS -->
 <div class="logo-bg-2"></div>
-<div class="admin-container">
+<div class="admin-container" style="max-width: 50%">
 
     <div class="row admin-mod-text">
         <div class="col-md-12">
@@ -54,46 +55,105 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
                 </div>
                 <div class="card-body">
                     <form action="back-end/back_proc.php" method="POST" enctype="multipart/form-data">
-                        <div class="row">
+                        <div class="row supplier-order">
                             <?php if($isEdit){?> 
-                                <div class="col-md-6">
                                     <?php }?>
-                                <input type="hidden" name="sup_id" value="<?= $sup_id; ?>"> <!-- Pass the category ID -->
+                                <input type="hidden" name="order_id" value="<?= $order_id; ?>"> <!-- Pass the category ID -->
                                 <?php
                                     // IF EDIT RECORD
                                     if($isEdit){?> 
-
+                                    <!-- <div class="col-md-6"> -->
+                                    <label for="" class="cat-label">
+                                        Order ID : <?=$order_id?>
+                                    </label>        
+                                    <br>
+                                    <br>
                                         <label for="">
-                                            Current Supplier Name
+                                            Product
                                         </label>
-                                        <input type="text" disabled value="<?= $sup_name ?> "name="olditemname" placeholder="Enter Category Name" class="form-control" required>
+                                        <input type="text" disabled value="<?= $order_item ?> "name="olditemname" placeholder="Enter Category Name" class="form-control" required>
+                                        <br> 
+                                        <br> 
+                                        <div  class="supplier-order">
+                                            <div>
+                                                <label for="">
+                                                Quantity Ordered
+                                                </label>
+                                            </div>   
+                                            <div>
+                                                <label for="">
+                                                Quantity Received
+                                                </label>
+                                            </div>  
+                                        </div>    
+                                        <div class="supplier-order">
+                                            <div>
+                                                <input type="number" disabled value="<?=$q_ordered?>" name="q_ordered" placeholder="Quantity Ordered" class="form-control" required>
+                                            </div>
+                                            <div>
+                                                <input type="number" disabled value="<?=$q_received?>" name="q_received" placeholder="Quantity Received" class="form-control" required>
+                                            </div>
+                                        </div>                                    
+                                        <br>                                      
+                                        <br> 
                                         <br>                                      
                                         <label for="">
                                             Supplier Name
                                         </label>
-                                        <input type="text" value="<?= $sup_name ?>" name="sup_name" placeholder="Enter Item Name" class="form-control" required>                                          
-                                        <br>                                      
+                                        <input type="text" disabled value="<?= $supplier_name ?>" name="sup_name" placeholder="Enter Item Name" class="form-control" required>                                          
+                                        <br> 
+                                        <br> 
+                                        <br> 
+                                        <hr>                                     
                                         <label for="">
-                                            Supplier Location
+                                            Quantity Delivered
                                         </label>
-                                        <input type="text" value="<?= $sup_location ?>" name="sup_location" placeholder="Enter Item Name" class="form-control" required>                                          
+                                        <br>
+                                        <div class="quantity-container">
+                                                <button type="button" class="quantity-btn" id="minus">-</button>
+                                                <input type="number" id="quantity" name="q_delivered" value="1" min="0" max="<?=$q_ordered-$q_received?>" step="1" class="form-control s  upplier-order" required>
+                                                <button type="button" class="quantity-btn" id="plus">+</button>
+                                            </div>                                     
                                         <br>  
-                                        <label for="">
-                                            Supplier Contact
-                                        </label>
-                                        <input type="tel" value="<?= $sup_contact ?>" name="sup_contact" placeholder="Enter Item Name" class="form-control" required>                                          
                                         <br>  
-                                        <label for="">
-                                            Supplier Email
-                                        </label>
-                                        <input type="email" value="<?= $sup_email ?>" name="sup_email" placeholder="Enter Item Name" class="form-control" required>                                          
-                                        <br>                                    
+                                        <br>
+                                    <label for="" style="margin-top: 5%">
+                                        Order Status
+                                    </label>
+                                    <br>
+                                    <select class="admin-sel" name="order_status" id="recstat">
+                                        <?php
+                                        echo $q_received;
+                                        if($order_status == "Pending"){
+                                            ?>
+                                                <option value="Pending">Pending</option>
+                                                <option value="Incomplete">Incomplete</option>
+                                                <option value="Complete">Complete</option>
+                                            <?php
+                                        } else if($order_status == "Incomplete") {
+                                            ?>
+                                                <option value="Incomplete">Incomplete</option>
+                                                <option value="Complete">Complete</option>
+                                                <option value="Pending">Pending</option>
+                                            <?php
+                                        } else if($order_status == "Complete") {
+                                        ?>
+                                                <option value="Complete">Complete</option>
+                                                <option value="Pending">Pending</option>
+                                                <option value="Incomplete">Incomplete</option>
+                                            <?php
+                                        } ?>
+                                    </select>
+
+                                                            
+                                        <br>
                                         <br>
 
                                         <?php
                                     // IF NEW RECORD                                
                                     }else {?>
-                                        <label for="">
+                                    <div>
+                                        <label for="" class="supplier-order">
                                             Product Name
                                         </label>
                                         <br>
@@ -131,12 +191,12 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
                                                 <label for="">Supplier</label>
                                             </div>
                                             <div>
-                                                <label for="" id="quantity-label">Order Quantity : </label>
+                                                <label for="" id="quantity-label">Order Quantity  </label>
                                             </div>
                                         </div>
                                         <hr>
                                         <!-- THIS IS FOR LOOP -->
-                                        <div class="supplier-order">
+                                        <div class="supplier-order" style="padding-left: 40px">
                                             <div >
                                         <select class="admin-sel" name="supplier_id" id="">
 
@@ -174,7 +234,7 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
                                         </div>
                                         <br>
                                         <br>
-
+                                        </div>
                                         <?php
                                     }
                                 ?>
@@ -182,33 +242,7 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
                             
                                 <?php 
                                 if($isEdit){?> 
-                                    <div class="col-md-6">
-                                    <label for="" class="cat-label">
-                                        Supplier ID : <?=$sup_id?>
-                                    </label>        
-                                    <br>
-                                    <br>
-                                    <label for="">
-                                        Supplier Status
-                                    </label>
-                                    <br>
-                                    <select class="admin-sel" name="recstat" id="recstat">
-                                        <?php
-                                        if($sup_stat == "Active"){
-                                            ?>
-                                                <option value="Active">Active</option>
-                                                <option value="Removed">Remove</option>
-                                            <?php
-                                        } else {
-                                            ?>
-                                                <option value="Removed">Remove</option>
-                                                <option value="Active">Active</option>
-                                            <?php
-                                        }
-                                        ?>
                                     
-                                    </select>
-                                </div>
 
                                 <?php
                                 }
@@ -219,22 +253,22 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
                                 <?php 
                                     if($isEdit){ ?>
                                     <div>
-                                        <button type="submit" value="<?= $isEdit ? '1' : '0'; ?>" name="sup-confirm-btn">Confirm Order</button>
-                                        <button type="submit" name="sup-cancel-btn" formnovalidate>Cancel</button>
+                                        <button type="submit" value="<?= $isEdit ? '1' : '0'; ?>" name="ord-confirm-btn">Confirm Order</button>
+                                        <button type="submit" name="ord-cancel-btn" formnovalidate>Cancel</button>
                                     </div>
                                     <?php } else {
                                         ?>
                                     <div style="margin-left:auto; margin-right:auto">
-                                        <button style="align-items: center" type="submit" value="<?= $isEdit ? '1' : '0'; ?>" name="sup-confirm-btn">Confirm Order</button>
-                                        <button type="submit" name="sup-cancel-btn" formnovalidate>Cancel</button>
+                                        <button style="align-items: center" type="submit" value="<?= $isEdit ? '1' : '0'; ?>" name="ord-confirm-btn">Confirm Order</button>
+                                        <button type="submit" name="ord-cancel-btn" formnovalidate>Cancel</button>
                                     </div>
                                     <?php
                                     }
                                 ?>
+                                </form>                
                                 
                             </div>
                         </div>
-                    </form>                
                 </div>
             </div>
         </div>
@@ -245,13 +279,16 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
     document.getElementById('plus').addEventListener('click', function() {
         let quantityInput = document.getElementById('quantity');
         let value = parseInt(quantityInput.value);
-        quantityInput.value = value + 1;
+        let maxaddition = <?=$q_ordered - $q_received?>;
+        if(value < maxaddition){
+            quantityInput.value = value + 1;
+        }
     });
 
     document.getElementById('minus').addEventListener('click', function() {
         let quantityInput = document.getElementById('quantity');
         let value = parseInt(quantityInput.value);
-        if (value > 1) {
+        if (value > 0) {
             quantityInput.value = value - 1;
         }
     });

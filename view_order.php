@@ -27,10 +27,10 @@ require "dbcon.php";
                             <th>Quantity Received</th>
                             <th>Supplier</th>
                             <th>Supplier Email</th>
-                            <th>Order Status</th>
                             <th>Date Ordered</th>
                             <th>Last Update</th>
                             <th>Creator Admin</th>
+                            <th>Order Status</th>
                             <!-- <th>Record Status</th> -->
                             <th style="text-align : center">Edit</th>
                         </tr>
@@ -56,15 +56,24 @@ require "dbcon.php";
                                         <td><?=$item['supplier_name']?> </td>
                                         <td><?=$item['supplier_email']?> </td>
                                         <td><?=$item['order_date']?> </td>
+<?php
+                                        if($item['last_update_date']== "0000-00-00 00:00:00"){
+                                            echo '<td> - </td>';
+                                        } else {
+?>
                                         <td><?=$item['last_update_date']?> </td>
+
+<?php                                   }
+                                        ?>
+
                                         <td><?=$item['admin_creator']?> </td>
                                         <td><?=$item['order_status']?> </td>
                                         <td>
                                             <!-- <a href="mod_category.php" class="btn">Edit Record</a> -->
-                                             <div class="col-md-9 ms-auto me-auto" style="text-align:center">
+                                             <div class="col-md-15 ms-auto me-auto" style="text-align:center">
                                                 <form action="mod_order.php?ordidlabel=<?=$item['order_id']?>" method="post">
-                                                    <button type="submit" name="ord-edit-btn">Edit Records</button>
-                                                    <a href="view_orders.php">Delete</a>
+                                                    <button type="submit" name="ord-edit-btn">Update</button>
+                                                    <a href="back_proc.php?delete-order=<?=$item['order_id']?>">Delete</a>
                                                 </form>
                                              </div>                                             
                                         </td>

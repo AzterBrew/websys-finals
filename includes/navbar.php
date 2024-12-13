@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg shadow custom-nav">
     <div class="container-fluid ms-3">
-      <a id="logo-ssite-1" href="../home.php">
+      <a id="logo-ssite-1" href="home.php">
         <img src="images/Keepy-White.png" alt="Keepy Logo" style="width:110px;height:auto;">
         </a>
       

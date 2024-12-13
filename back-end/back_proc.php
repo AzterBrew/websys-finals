@@ -197,6 +197,85 @@ else if(isset($_POST['sup-confirm-btn'])){   //FOR ITEM PROCESSING
 }
 
 
+//THIS IS FOR CONFIRMING AND INSERTING / UPDAITNG ITEM RECORD
+
+
+else if(isset($_POST['ord-confirm-btn'])){   //FOR ITEM PROCESSING
+    $isEdit = $_POST['ord-confirm-btn'];
+    // $item_name = $_POST['item_name'];
+    // $item_desc = htmlspecialchars($_POST['item_desc']);
+    // $item_stock = $_POST['item_stock'];
+    
+    
+    
+    if($isEdit === "1"){
+        $order_id = $_POST['order_id'];
+        $order_status = $_POST['order_status'];
+        $q_initreceived = $_POST['q_received'];
+        $quantity_received = $_POST['q_delivered'];
+        $quantity_received += $q_initreceived;
+        echo $q_initreceived; 
+
+        $query = "UPDATE orders SET quantity_received = ?, last_update_date = ?, order_status = ? WHERE order_id = ?";
+        // 
+        $stmt = $con->prepare($query);
+        $date_created = date("Y-m-d H:i:s"); 
+        $stmt->bind_param("issi", $quantity_received,$date_created, $order_status, $order_id);
+        if ($stmt->execute()) {
+            // header("Location: ../view_order.php");
+            // exit();
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+    } else if($isEdit === "0") {
+        $supplier_id = $_POST['supplier_id'];
+    $item_id = $_POST['item_id']; 
+    $quantity_ordered = $_POST['quantity'];
+        $order_id = TableRowCount("orders",$con)+1;
+        $admin_id = $_SESSION['uid'];
+
+        $query = "INSERT INTO orders(order_id, item_id, quantity_ordered, supplier_id, order_status, admin_order, order_date, record_status)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
+
+        $stmt = $con->prepare($query);
+        $date_created = date("Y-m-d H:i:s"); 
+        $record_status = 'Active'; 
+        $order_status = 'Pending'; //pending, incomplete, complete 
+        $stmt->bind_param("iiiisiss", $order_id, $item_id,$quantity_ordered, $supplier_id, $order_status, $admin_id, $date_created, $record_status);
+
+        if ($stmt->execute()) {
+            // echo $order_id . $quantity_ordered . $supplier_id . $order_status . $admin_id . $date_created . $record_status ;
+            header("Location: ../view_order.php");
+            exit();
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+
+    } else {
+        echo "Invalid action.";
+    } 
+
+} else if (isset($_POST['ord-cancel-btn'])){
+    header("Location: ../view_order.php");
+
+} else if (isset($_GET['delete-order'])){
+    $order_id = $_GET['delete-order'];
+
+    $query = "UPDATE orders SET record_status = ? WHERE order_id = ?";
+    // 
+    $stmt = $con->prepare($query);
+    $date_created = date("Y-m-d H:i:s"); 
+    $stmt->bind_param("issi", $quantity_received,$date_created, $order_status, $order_id);
+
+    if ($stmt->execute()) {
+        header("Location: ../view_order.php");
+        exit();
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+}
 
 
 
