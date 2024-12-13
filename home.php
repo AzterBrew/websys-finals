@@ -3,7 +3,7 @@
 include('includes/header.php'); 
 include('dbcon.php'); 
 
-$query = "SELECT * FROM administrators WHERE admin_id = 1";
+$query = "SELECT * FROM administrators WHERE admin_id = ". $_SESSION['uid'];
 $stmt = $con->prepare($query);
 // $stmt->bind_param("i", $start, $limit);
 $stmt->execute();
@@ -15,9 +15,9 @@ $result = $stmt->get_result();
                 echo "No user_credentials record found for userinfo_id: $userinfo_id";
                 exit();
             }
-
-
 ?>
+
+
         <div class="page-container">
             <div class="hello-username">
                 <h1>Welcome back to your Dashboard, <?=$username?>!</h1>
@@ -77,7 +77,6 @@ $result = $stmt->get_result();
         </div>
                 </div>
             </div>
-        </div>
 
 </div>
             </div>
@@ -86,7 +85,8 @@ $result = $stmt->get_result();
                 <!-- <hr> -->
             </div>    
         </div>
-    </main>
+        </div>
+        </main>
 <footer>
 <?php include('includes/footer.php'); ?>
 

@@ -17,10 +17,10 @@ include 'middleware.php';
     <link rel="stylesheet" type="text/css" href="style.css" >
 </head>
 <body class="content">
-<main>
 <div class="custom-nav">
 <?php 
 include 'navbar.php'; 
 include 'sidebar.php'; 
 ?>
+</div>
             <div>

@@ -22,12 +22,12 @@ $pass = verify($_POST['password']);
 $table = "";
 $aidres = RetrieveAdmin($con, $uemail);
 
-if(mysqli_num_rows($aidres)===1){
+if(mysqli_num_rows($aidres)>=1){
     $uinfo_row = mysqli_fetch_assoc($aidres);
     
     // INCASE NA SA HASHING
-    // if($uinfo_row['email'] === $uemail && password_verify($pass, $uinfo_row['password'])) {
-    if($uinfo_row['admin_email'] === $uemail &&  password_verify($pass, $uinfo_row['admin_pass'])) {
+    // if($uinfo_row['email'] === $uemail && password_verify($pass, $uinfo_row['admin_pass'])) {
+    if($uinfo_row['admin_email'] === $uemail &&  $uinfo_row['admin_pass'] == $pass) {
         $aid = $uinfo_row['admin_id'];
         $ad_stat = $uinfo_row['admin_status'];
 
@@ -45,7 +45,7 @@ if(mysqli_num_rows($aidres)===1){
                 header("Location: ../home.php");     //AUTHORIZED ADMIN
                 
             } else if($ad_priv == 'Unauthorized') {
-                unset($_SESSION['isPriv']);                
+                // unset($_SESSION['isPriv']);                
                 header("Location: ../home.php");    //UNAUTHORIZED ADMIN
             }
 

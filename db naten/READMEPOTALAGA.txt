@@ -6,3 +6,6 @@ since yan nakalagay sa dbcon na name ng db
 
 email : ems@gmail.com 
 pass: 123
+
+email : ace@gmail.com   
+pass: 123

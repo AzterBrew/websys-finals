@@ -302,9 +302,10 @@ else if(isset($_POST['ad-confirm-btn'])){   //FOR ITEM PROCESSING
 
         if($password == ""){
             $password = $_POST['oldpass'];
-        } else {
-            $password = password_hash($password, PASSWORD_DEFAULT);
-        }
+        } 
+        // else {
+        //     // $password = password_hash($password, PASSWORD_DEFAULT);
+        // }
 
         $query = "UPDATE administrators SET admin_firstname = ?, admin_surname = ?, admin_contact = ?, admin_email=?, admin_pass=?, admin_priv= ?, admin_status =? WHERE admin_id = ?";
         // 
@@ -322,7 +323,7 @@ else if(isset($_POST['ad-confirm-btn'])){   //FOR ITEM PROCESSING
         // $supplier_id = $_POST['supplier_id'];
         // $item_id = $_POST['item_id']; 
         // $quantity_ordered = $_POST['quantity'];
-        $admin_id = TableRowCount("orders",$con)+1;
+        $admin_id = TableRowCount("administrators",$con)+1;
 
         $query = "INSERT INTO administrators(admin_id, admin_firstname, admin_surname, admin_email, admin_contact, admin_pass, admin_created, admin_status, admin_priv) 
                 VALUES (?, ?, ?, ?, ?, ?, NOW(), 'Active', ?);";
@@ -330,11 +331,11 @@ else if(isset($_POST['ad-confirm-btn'])){   //FOR ITEM PROCESSING
         $stmt = $con->prepare($query);
         $date_created = date("Y-m-d H:i:s"); 
         $record_status = 'Active'; 
-        $stmt->bind_param("iiiisiss", $order_id, $item_id,$quantity_ordered, $supplier_id, $order_status, $admin_id, $date_created, $record_status);
+        $stmt->bind_param("issssss", $admin_id, $admin_firstname, $admin_surname, $admin_email, $admin_contact, $password, $admin_priv);
 
         if ($stmt->execute()) {
             // echo $order_id . $quantity_ordered . $supplier_id . $order_status . $admin_id . $date_created . $record_status ;
-            header("Location: ../view_order.php");
+            header("Location: ../view_admin.php");
             exit();
         } else {
             echo "Error: " . $stmt->error;
@@ -346,7 +347,7 @@ else if(isset($_POST['ad-confirm-btn'])){   //FOR ITEM PROCESSING
     } 
 
 } else if (isset($_POST['ad-cancel-btn'])){
-    header("Location: ../view_order.php");
+    header("Location: ../view_admin.php");
 
 }
 

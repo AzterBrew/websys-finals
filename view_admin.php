@@ -3,6 +3,9 @@ include 'includes/header.php';
 include 'middleware.php';
 require "dbcon.php";
 
+if(isset($_SESSION['isPriv'])){
+
+
 ?>
 
 <!-- CONTENT -->
@@ -123,7 +126,11 @@ require "dbcon.php";
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </div>
 
-<?php
+    <?php
+
+} else {
+    header("Location: home.php?error=You are not authorized to access that page");
+}
 
 
 function RetrieveAll($table, $con, $start, $limit)
@@ -159,3 +166,5 @@ function pagination($con)
         include 'includes/footer.php';
     ?>
 </div>
+
+
