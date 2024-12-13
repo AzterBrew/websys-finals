@@ -224,8 +224,9 @@ form {
 }
 
 label {
-  font-size: 1.5rem;
-  color: #CEDFE3;
+  font-size: 30px;
+  font-weight:bold;
+  color: #ffffff;
 }
 
 
@@ -383,7 +384,7 @@ button:not(.disabled_ad-edit-btn):hover {
 /* NAVBAR - Header */ 
 .custom-nav, #admin-logout {
   background-color: #3f658b; /* Replace with your hex code */
-  color: #f4f4f4; /* Text color */
+  color: #ffffff; /* Text color */
   padding: 2.5px;
 }
 
