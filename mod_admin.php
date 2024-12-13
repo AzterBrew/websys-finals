@@ -29,7 +29,7 @@ if(isset($_POST['ad-edit-btn'])){ //IF EDITING RECORD
 
     }                                     
 } else if (isset($_POST['ad-add-btn'])){ //IF NEW RECORD
-    $sup_id = TableRowCount("administrators",$con)+1;
+    $admin_id = TableRowCount("administrators",$con)+1;
     $isEdit = False;
 
 }
@@ -64,9 +64,9 @@ if(isset($_POST['ad-edit-btn'])){ //IF EDITING RECORD
                                     <br>
                                     <br>
                                         <label for="">
-                                            
+                                            Current Username :
                                         </label>
-                                        <input type="text" disabled value="<?= $order_item ?> "name="olditemname" placeholder="Enter Category Name" class="form-control" required>
+                                        <input type="text" disabled value="<?= $admin_firstname . ' ' . $admin_surname ?>" name="admin_full" placeholder="Enter Category Name" class="form-control" required>
                                         <br> 
                                         <br> 
                                         <div  class="supplier-order">
@@ -116,30 +116,6 @@ if(isset($_POST['ad-edit-btn'])){ //IF EDITING RECORD
                                         User Status
                                     </label>
                                     <br>
-                                    <select class="admin-sel" name="order_status" id="recstat">
-                                        <?php
-                                        echo $q_received;
-                                        if($order_status == "Pending"){
-                                            ?>
-                                                <option value="Pending">Pending</option>
-                                                <option value="Incomplete">Incomplete</option>
-                                                <option value="Complete">Complete</option>
-                                            <?php
-                                        } else if($order_status == "Incomplete") {
-                                            ?>
-                                                <option value="Incomplete">Incomplete</option>
-                                                <option value="Complete">Complete</option>
-                                                <option value="Pending">Pending</option>
-                                            <?php
-                                        } else if($order_status == "Complete") {
-                                        ?>
-                                                <option value="Complete">Complete</option>
-                                                <option value="Pending">Pending</option>
-                                                <option value="Incomplete">Incomplete</option>
-                                            <?php
-                                        } ?>
-                                    </select>
-
                                                             
                                         <br>
                                         <br>
@@ -148,84 +124,42 @@ if(isset($_POST['ad-edit-btn'])){ //IF EDITING RECORD
                                     // IF NEW RECORD                                
                                     }else {?>
                                     <div>
-                                        <label for="" class="supplier-order">
-                                            Product Name
+                                        <label for="" class="cat-label">
+                                            User ID : <?=$admin_id?>
+                                        </label>        
+                                        <br>
+                                        <br>                                      
+                                        <label for="">
+                                            First Name
                                         </label>
-                                        <br>
-                                        <select class="admin-sel" name="item_id" id="order-sel">
-
-                                        <?php
-                                            $catquery = "SELECT * FROM items WHERE record_status = 'Active'";
-                                            $result = mysqli_query($con, $catquery);
-
-                                            // Check if there are any categories
-                                            if (mysqli_num_rows($result) > 0) {
-                                                $count = 0;
-                                                // Loop through the records and create options
-                                                while ($row = mysqli_fetch_assoc($result)) {
-                                                    if($row['record_status']=="Active"){
-                                                        echo '<option value="' . $row['item_id'] . '">' . htmlspecialchars($row['item_name']) . '</option>';
-                                                    $count++;
-                                                    }
-                                                }
-                                                if($count=== 0){
-                                                    echo '<option value="0">No items available</option>';                                                
-                                                }
-                                            } else {
-                                                // If no categories exist, show a message
-                                                echo '<option value="0">No items available</option>';
-                                            }                                    
-                                        ?>
+                                        <input type="text" name="admin_firstname" placeholder="Enter First Name" class="form-control" required>  
+                                        <br>                                      
+                                        <label for="">
+                                            Last Name
+                                        </label>
+                                        <input type="text" name="admin_surname" placeholder="Enter Last Name" class="form-control" required>  
+                                        <br>                                      
+                                        <label for="">
+                                            Mobile Number
+                                        </label>
+                                        <input type="tel" name="admin_contact" placeholder="Enter mobile number" class="form-control" required>                                          
+                                        <br>                                      
+                                        <label for="">
+                                            Email
+                                        </label>
+                                        <input type="email" name="admin_email" placeholder="Enter Email" class="form-control" required>
+                                        <br>                                      
                                         
-                                        </select>
-                                        <br>
-                                        <br>
-                                        <div class="supplier-order">
-                                            <div >
-                                        <br>
-                                                <label for="">Supplier</label>
-                                            </div>
-                                            <div>
-                                                <label for="" id="quantity-label">Order Quantity  </label>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <!-- THIS IS FOR LOOP -->
-                                        <div class="supplier-order" style="padding-left: 40px">
-                                            <div >
-                                        <select class="admin-sel" name="supplier_id" id="">
-
-                                        <?php
-                                            $catquery = "SELECT * FROM supplier";
-                                            $result = mysqli_query($con, $catquery);
-                                            
-                                            // Check if there are any categories
-                                            if (mysqli_num_rows($result) > 0) {
-                                                $count = 0;
-                                                // Loop through the records and create options
-                                                while ($row = mysqli_fetch_assoc($result)) {
-                                                    if($row['record_status']=="Active"){
-                                                        echo '<option value="' . $row['supplier_id'] . '">' . htmlspecialchars($row['supplier_name']) . '</option>';
-                                                    $count++;
-                                                    }
-                                                }
-                                                if($count=== 0){
-                                                    echo '<option value="0">No Supplier Record Available</option>';                                                
-                                                }
-                                            } else {
-                                                // If no categories exist, show a message
-                                                echo '<option value="0">No Supplier Record Available</option>';
-                                            }                                    
-                                        ?>
+                                        <label for="password">Password:</label>
+                                        <input type="password" id="password" name="password" placeholder="Enter your password" class="form-control" required><br>
                                         
-                                        </select>
-                                        <br>
-                                            </div>
-                                            <div class="quantity-container">
-                                                <button type="button" class="quantity-btn" id="minus">-</button>
-                                                <input type="number" id="quantity" name="quantity" value="1" min="1" step="1" class="form-control supplier-order" required>
-                                                <button type="button" class="quantity-btn" id="plus">+</button>
-                                            </div>
+                                        <p id="passwarning"><b>Password does NOT match</b></p>
+                                        <label for="confirm_password">Confirm Password:</label>
+                                        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" class="form-control" onkeyup="confirmPass();" required><br><br>
+
+
+                                        
+                                          
                                         </div>
                                         <br>
                                         <br>
@@ -288,6 +222,36 @@ if(isset($_POST['ad-edit-btn'])){ //IF EDITING RECORD
         }
     });
 
+    
+//  const firstpass = document.getElementById('password');
+//  const confirmpass = document.getElementById('confirm_password');
+//  const passwarning = document.getElementById('passwarning');
+
+//  // Function to toggle the input field
+
+//  function confirmPass(){
+//     if(firstpass.value != confirmpass.value){
+//         console.log('not match')
+//         passwarning.style.visibility = 'visible';
+//     } else {
+//         console.log('match')
+//         passwarning.style.visibility = 'hidden';
+//     }
+//  }
+
+//  document.getElementById('passwarning').addEventListener('onkeyup', function () {
+//     confirmPass();
+//   });
+
+//  // Add event listener to the select element
+//  typeSelect.addEventListener('change', toggleInput);
+// //  confirmpass.addEventListener('change',confirmPass);
+
+//  // Call the function once to set the initial state
+//  toggleInput();
+// //  confirmPass();
+
+
 </script>
 
 
@@ -298,7 +262,8 @@ if(isset($_POST['ad-edit-btn'])){ //IF EDITING RECORD
 </div>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script src="reg.js" type="text/javascript"></script>
+    </body>
 <footer>
 
 <?php

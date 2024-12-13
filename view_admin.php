@@ -102,8 +102,8 @@ require "dbcon.php";
                             </ul>
                         </nav>
                         <div class="col-md-4 ms-auto">
-                            <form action="mod_order.php?ordidlabel=0" method="post">
-                                <button type="submit" name="ord-add-btn">Add New Administrator Account</button>
+                            <form action="mod_admin.php?adidlabel=0" method="post">
+                                <button type="submit" name="ad-add-btn">Add New Administrator Account</button>
 
                             </form>
                         </div>
