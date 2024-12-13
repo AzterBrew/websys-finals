@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2024 at 07:49 AM
+-- Generation Time: Dec 13, 2024 at 10:29 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -44,7 +44,8 @@ CREATE TABLE `administrators` (
 --
 
 INSERT INTO `administrators` (`admin_id`, `admin_firstname`, `admin_surname`, `admin_email`, `admin_pass`, `admin_contact`, `admin_status`, `admin_priv`, `admin_created`) VALUES
-(1, 'Eloisa', 'Sumbad', 'ems@gmail.com', '123', '09223010281', 'Active', 'Authorized', '2024-12-13 13:24:04');
+(1, 'Eloisa', 'Sumbad', 'ems@gmail.com', '123', '09223010281', 'Active', 'Authorized', '2024-12-13 13:24:04'),
+(2, 'Ace', 'Madrigal', 'ace@gmail.com', '123', '09999999999', 'Active', 'Unauthorized', '2024-12-13 15:33:43');
 
 -- --------------------------------------------------------
 
@@ -65,7 +66,9 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`cat_id`, `category`, `date_created`, `admin_creator`, `record_status`) VALUES
-(1, 'Actually', '2024-12-12 19:12:25', 1, 'Active');
+(1, 'Condiments', '2024-12-12 19:12:25', 1, 'Active'),
+(2, 'Spices', '2024-12-13 17:05:40', 2, 'Active'),
+(3, 'Utensils', '2024-12-13 17:05:47', 2, 'Active');
 
 -- --------------------------------------------------------
 
@@ -91,8 +94,10 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`item_id`, `item_name`, `item_desc`, `item_img`, `cat_id`, `supplier_id`, `stock`, `admin_creator`, `date_created`, `record_status`) VALUES
-(1, 'Banana Ketchup', '    Catsup', 0x315f313733343033393735392e6a7067, 1, 1, 50, 1, '2024-12-12', 'Active'),
-(2, 'UFC Tomato Ketchup', 'tomato', 0x325f313733343034343135342e6a7067, 1, 1, 45, 1, '2024-12-12', 'Active');
+(1, 'Knorr Liquid Seasoning', ' Knorr', 0x315f313733343038303931322e706e67, 1, 1, 30, 2, '2024-12-13', 'Removed'),
+(2, 'Heinz Ketchup', 'ketchp', 0x325f313733343038303937392e6a7067, 1, 1, 40, 2, '2024-12-13', 'Active'),
+(3, 'Tablespoon', 'spoon', 0x335f313733343038313234382e6a7067, 3, 1, 10, 2, '2024-12-13', 'Active'),
+(4, 'Black Pepper', '-', 0x345f313733343038323034362e6a7067, 2, 3, 60, 2, '2024-12-13', 'Active');
 
 -- --------------------------------------------------------
 
@@ -112,14 +117,6 @@ CREATE TABLE `orders` (
   `last_update_date` datetime NOT NULL,
   `record_status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`order_id`, `item_id`, `quantity_ordered`, `quantity_received`, `supplier_id`, `order_status`, `admin_order`, `order_date`, `last_update_date`, `record_status`) VALUES
-(1, 1, 2, 2, 1, 'Complete', 1, '2024-12-13 02:47:29', '2024-12-13 05:51:11', 'Active'),
-(2, 1, 2, 0, 1, 'Pending', 1, '2024-12-13 02:47:41', '0000-00-00 00:00:00', 'Active');
 
 -- --------------------------------------------------------
 
@@ -143,7 +140,9 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`supplier_id`, `supplier_name`, `supplier_location`, `supplier_contact`, `supplier_email`, `admin_creator`, `date_created`, `record_status`) VALUES
-(1, 'Madrigal\'s Food Corp.', 'Hermosa, Bataan', '09191911919', 'a@gmail.com', 1, '2024-12-12 22:14:37', 'Active');
+(1, 'Madrigal\'s Food Corp.', 'Hermosa, Bataan', '09191911919', 'a@gmail.com', 1, '2024-12-12 22:14:37', 'Active'),
+(2, 'Ace Ware', 'Hermosa, Bataan', '09191911919', 'aw@gmail.com', 2, '2024-12-13 10:14:46', 'Active'),
+(3, 'McCormick', 'Quezon City', '09668885555', 'mc@gmail.com', 2, '2024-12-13 10:20:48', 'Active');
 
 -- --------------------------------------------------------
 
@@ -175,7 +174,13 @@ INSERT INTO `user_login` (`userlogin_id`, `admin_id`, `logindate`) VALUES
 (11, 1, '2024-12-13 00:08:10'),
 (12, 1, '2024-12-13 00:19:27'),
 (13, 1, '2024-12-13 04:12:03'),
-(14, 1, '2024-12-13 14:14:34');
+(14, 1, '2024-12-13 14:14:34'),
+(15, 1, '2024-12-13 15:40:44'),
+(16, 1, '2024-12-13 15:44:22'),
+(17, 2, '2024-12-13 15:45:23'),
+(18, 1, '2024-12-13 15:45:35'),
+(19, 2, '2024-12-13 15:45:44'),
+(20, 2, '2024-12-13 15:46:50');
 
 --
 -- Indexes for dumped tables
@@ -236,19 +241,19 @@ ALTER TABLE `user_login`
 -- AUTO_INCREMENT for table `administrators`
 --
 ALTER TABLE `administrators`
-  MODIFY `admin_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cat_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cat_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `item_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `item_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
