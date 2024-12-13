@@ -4,28 +4,23 @@ include 'middleware.php';
 include 'dbcon.php';
 
 
-if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
-    if (isset($_GET['ordidlabel'])) {
-        $order_id = $_GET['ordidlabel'];
+if(isset($_POST['ad-edit-btn'])){ //IF EDITING RECORD
+    if (isset($_GET['adidlabel'])) {
+        $admin_id = $_GET['adidlabel'];
 
-        $getnamequery = "SELECT * FROM orders o 
-              LEFT JOIN items i ON o.item_id=i.item_id
-              LEFT JOIN supplier s ON o.supplier_id=s.supplier_id
-              LEFT JOIN administrators a ON o.admin_order = a.admin_id    
-              WHERE order_id = ?";
+        $getnamequery = "SELECT * FROM administrators WHERE admin_id = ?";
         $stmt = $con->prepare($getnamequery);
-        $stmt->bind_param("i",$order_id);
+        $stmt->bind_param("i",$admin_id);
         if ($stmt->execute()) {
             $results = $stmt->get_result(); // Always return the result object        
             $item_row = mysqli_fetch_assoc($results);            
-            $order_item = $item_row['item_name'];
-            $q_ordered = $item_row['quantity_ordered'];
-            $q_received = $item_row['quantity_received'];
-            $supplier_name = $item_row['supplier_name'];
-            $supplier_email = $item_row['supplier_email'];
-            $order_status = $item_row['order_status'];
-            $rec_stat = $item_row['record_status'];
-
+            $admin_firstname = $item_row['admin_firstname']; 
+            $admin_surname = $item_row['admin_surname'];
+            $admin_email= $item_row['admin_email'];
+            $admin_contact = $item_row['admin_contact'];
+            $admin_priv = $item_row['admin_priv'];
+            $admin_status = $item_row['admin_status'];
+            
         } else {
             echo "Error: " . $stmt->error;
             echo "Order might have been deleted";
@@ -33,8 +28,8 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
         $isEdit = True;
 
     }                                     
-} else if (isset($_POST['ord-add-btn'])){ //IF NEW RECORD
-    $sup_id = TableRowCount("supplier",$con)+1;
+} else if (isset($_POST['ad-add-btn'])){ //IF NEW RECORD
+    $sup_id = TableRowCount("administrators",$con)+1;
     $isEdit = False;
 
 }
@@ -50,7 +45,7 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
             <div class="card">
                 <div class="card-header">
                     <h2 style="font-family: 'Inter', sans-serif; font-size: 40px; font-weight: bold;">
-                        Order Product
+                        Account Assignation
                     </h2>
                 </div>
                 <div class="card-body">
@@ -58,19 +53,18 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
                         <div class="row supplier-order">
                             <?php if($isEdit){?> 
                                     <?php }?>
-                                <input type="hidden" name="order_id" value="<?= $order_id; ?>"> <!-- Pass the category ID -->
-                                <input type="hidden" name="q_received" value="<?= $q_received; ?>"> <!-- Pass the category ID -->
+                                <input type="hidden" name="admin_id" value="<?= $admin_id; ?>"> <!-- Pass the category ID -->
                                 <?php
                                     // IF EDIT RECORD
                                     if($isEdit){?> 
                                     <!-- <div class="col-md-6"> -->
                                     <label for="" class="cat-label">
-                                        Order ID : <?=$order_id?>
+                                        User ID : <?=$admin_id?>
                                     </label>        
                                     <br>
                                     <br>
                                         <label for="">
-                                            Product
+                                            
                                         </label>
                                         <input type="text" disabled value="<?= $order_item ?> "name="olditemname" placeholder="Enter Category Name" class="form-control" required>
                                         <br> 
@@ -119,7 +113,7 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
                                         <br>  
                                         <br>
                                     <label for="" style="margin-top: 5%">
-                                        Order Status
+                                        User Status
                                     </label>
                                     <br>
                                     <select class="admin-sel" name="order_status" id="recstat">
@@ -254,14 +248,14 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
                                 <?php 
                                     if($isEdit){ ?>
                                     <div>
-                                        <button type="submit" value="<?= $isEdit ? '1' : '0'; ?>" name="ord-confirm-btn">Confirm Order</button>
-                                        <button type="submit" name="ord-cancel-btn" formnovalidate>Cancel</button>
+                                        <button type="submit" value="<?= $isEdit ? '1' : '0'; ?>" name="ad-confirm-btn">Confirm Order</button>
+                                        <button type="submit" name="ad-cancel-btn" formnovalidate>Cancel</button>
                                     </div>
                                     <?php } else {
                                         ?>
                                     <div style="margin-left:auto; margin-right:auto">
-                                        <button style="align-items: center" type="submit" value="<?= $isEdit ? '1' : '0'; ?>" name="ord-confirm-btn">Confirm Order</button>
-                                        <button type="submit" name="ord-cancel-btn" formnovalidate>Cancel</button>
+                                        <button style="align-items: center" type="submit" value="<?= $isEdit ? '1' : '0'; ?>" name="ad-confirm-btn">Confirm Order</button>
+                                        <button type="submit" name="ad-cancel-btn" formnovalidate>Cancel</button>
                                     </div>
                                     <?php
                                     }
