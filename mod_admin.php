@@ -54,6 +54,7 @@ if(isset($_POST['ad-edit-btn'])){ //IF EDITING RECORD
                             <?php if($isEdit){?> 
                                     <?php }?>
                                 <input type="hidden" name="admin_id" value="<?= $admin_id; ?>"> <!-- Pass the category ID -->
+                                <input type="hidden" name="oldpass" value="<?= $password; ?>"> <!-- Pass the category ID -->
                                 <?php
                                     // IF EDIT RECORD
                                     if($isEdit){?> 
@@ -69,56 +70,40 @@ if(isset($_POST['ad-edit-btn'])){ //IF EDITING RECORD
                                         <input type="text" disabled value="<?= $admin_firstname . ' ' . $admin_surname ?>" name="admin_full" placeholder="Enter Category Name" class="form-control" required>
                                         <br> 
                                         <br> 
-                                        <div  class="supplier-order">
-                                            <div>
-                                                <label for="">
-                                                Quantity Ordered
-                                                </label>
-                                            </div>   
-                                            <div>
-                                                <label for="">
-                                                Quantity Received
-                                                </label>
-                                            </div>  
-                                        </div>    
-                                        <div class="supplier-order">
-                                            <div>
-                                                <input type="number" disabled value="<?=$q_ordered?>" name="q_ordered" placeholder="Quantity Ordered" class="form-control" required>
-                                            </div>
-                                            <div>
-                                                <input type="number" disabled value="<?=$q_received?>" name="q_rec" placeholder="Quantity Received" class="form-control" required>
-                                            </div>
-                                        </div>                                    
-                                        <br>                                      
-                                        <br> 
+                                        <label for="">
+                                            First Name
+                                        </label>
+                                        <input type="text" value="<?=$admin_firstname?>" name="admin_firstname" placeholder="Enter First Name" class="form-control" required>  
                                         <br>                                      
                                         <label for="">
-                                            Supplier Name
+                                            Last Name
                                         </label>
-                                        <input type="text" disabled value="<?= $supplier_name ?>" name="sup_name" placeholder="Enter Item Name" class="form-control" required>                                          
-                                        <br> 
-                                        <br> 
+                                        <input type="text" value="<?=$admin_surname?>" name="admin_surname" placeholder="Enter Last Name" class="form-control" required>  
+                                        <br>                                      
+                                        <label for="">
+                                            Mobile Number
+                                        </label>
+                                        <input type="tel" value="<?=$admin_contact?>" name="admin_contact" placeholder="Enter mobile number" class="form-control" required>                                          
+                                        <br>                                      
+                                        <label for="">
+                                            Email
+                                        </label>
+                                        <input type="email" value="<?=$admin_email?>" name="admin_email" placeholder="Enter Email" class="form-control" required>
+                                        <br>                                      
+                                        
+                                        <label for="password">Password:</label>
+                                        <input type="password" id="password" name="password" placeholder="Enter your password" class="form-control" required><br>
+                                        
+                                        <p id="passwarning"><b>Password does NOT match</b></p>
+                                        <label for="confirm_password">Confirm Password:</label>
+                                        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" class="form-control" onkeyup="confirmPass();" required><br><br>
+
+                       
                                         <br> 
                                         <hr>                                     
-                                        <label for="">
-                                            Quantity Delivered
-                                        </label>
-                                        <br>
-                                        <div class="quantity-container">
-                                                <button type="button" class="quantity-btn" id="minus">-</button>
-                                                <input type="number" id="quantity" name="q_delivered" value="1" min="0" max="<?=$q_ordered-$q_received?>" step="1" class="form-control s  upplier-order" required>
-                                                <button type="button" class="quantity-btn" id="plus">+</button>
-                                            </div>                                     
+                                                                          
                                         <br>  
-                                        <br>  
-                                        <br>
-                                    <label for="" style="margin-top: 5%">
-                                        User Status
-                                    </label>
-                                    <br>
-                                                            
-                                        <br>
-                                        <br>
+                                        
 
                                         <?php
                                     // IF NEW RECORD                                
@@ -157,7 +142,7 @@ if(isset($_POST['ad-edit-btn'])){ //IF EDITING RECORD
                                         <label for="confirm_password">Confirm Password:</label>
                                         <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" class="form-control" onkeyup="confirmPass();" required><br><br>
 
-                                        
+
                                         
                                           
                                         </div>
@@ -167,12 +152,57 @@ if(isset($_POST['ad-edit-btn'])){ //IF EDITING RECORD
                                         <?php
                                     }
                                 ?>
-                            </div>
+
+                                        <br>
+
+                                        <label for="">
+                                            User Database Access
+                                        </label>
+                                        <br>
+                                        <select class="admin-sel" name="ad_priv" id="recstat">
+                                            <?php
+                                                if($admin_priv == "Authorized"){
+                                                    ?>
+                                                        <option value="Authorized">Authorize</option>
+                                                        <option value="Unauthorized">Unauthorize</option>
+                                                    <?php
+                                                } else {
+                                                    ?>
+                                                        <option value="Unauthorized">Unauthorize</option>
+                                                        <option value="Authorized">Authorize</option>
+                                                    <?php
+                                                }
+                                            ?>                                    
+                                        </select>
+                                        <br>
+
+                            
                             
                                 <?php 
                                 if($isEdit){?> 
                                     
-
+                                    <br>
+                                        
+                                        <label style="margin-top: 5%" for="">
+                                            Administrator Status
+                                        </label>
+                                        <br>
+                                        <select class="admin-sel" name="recstat" id="recstat">
+                                            <?php
+                                                if($ad_stat == "Active"){
+                                                    ?>
+                                                        <option value="Active">Active</option>
+                                                        <option value="Removed">Remove</option>
+                                                    <?php
+                                                } else {
+                                                    ?>
+                                                        <option value="Removed">Remove</option>
+                                                        <option value="Active">Active</option>
+                                                    <?php
+                                                }
+                                            ?>                                    
+                                        </select>
+                                        <br>
                                 <?php
                                 }
                                 ?>                                
@@ -181,7 +211,7 @@ if(isset($_POST['ad-edit-btn'])){ //IF EDITING RECORD
                                 <br>
                                 <?php 
                                     if($isEdit){ ?>
-                                    <div>
+                                    <div style="margin-top: 5%">
                                         <button type="submit" value="<?= $isEdit ? '1' : '0'; ?>" name="ad-confirm-btn">Confirm Order</button>
                                         <button type="submit" name="ad-cancel-btn" formnovalidate>Cancel</button>
                                     </div>

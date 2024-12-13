@@ -280,6 +280,77 @@ else if(isset($_POST['ord-confirm-btn'])){   //FOR ITEM PROCESSING
 
 
 
+//THIS IS FOR CONFIRMING AND INSERTING / UPDAITNG ITEM RECORD
+
+
+else if(isset($_POST['ad-confirm-btn'])){   //FOR ITEM PROCESSING
+    $isEdit = $_POST['ad-confirm-btn'];
+    // $item_name = $_POST['item_name'];
+    // $item_desc = htmlspecialchars($_POST['item_desc']);
+    // $item_stock = $_POST['item_stock'];
+    $admin_firstname = $_POST['admin_firstname'];
+    $admin_surname = $_POST['admin_surname'];
+    $admin_contact = $_POST['admin_contact'];
+    $admin_email = $_POST['admin_email'];
+    $password = $_POST['password'];
+    $admin_priv = $_POST['ad_priv'];
+    
+    
+    if($isEdit === "1"){
+        $admin_id = $_POST['admin_id'];
+        $admin_status = $_POST['recstat'];
+
+        if($password == ""){
+            $password = $_POST['oldpass'];
+        } else {
+            $password = password_hash($password, PASSWORD_DEFAULT);
+        }
+
+        $query = "UPDATE administrators SET admin_firstname = ?, admin_surname = ?, admin_contact = ?, admin_email=?, admin_pass=?, admin_priv= ?, admin_status =? WHERE admin_id = ?";
+        // 
+        $stmt = $con->prepare($query);
+        // $date_created = date("Y-m-d H:i:s"); 
+        $stmt->bind_param("sssssssi", $admin_firstname,$admin_surname, $admin_contact, $admin_email, $password, $admin_priv, $admin_status, $admin_id);
+        if ($stmt->execute()) {
+            header("Location: ../view_admin.php");
+            exit();
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+    } else if($isEdit === "0") {
+        // $supplier_id = $_POST['supplier_id'];
+        // $item_id = $_POST['item_id']; 
+        // $quantity_ordered = $_POST['quantity'];
+        $admin_id = TableRowCount("orders",$con)+1;
+
+        $query = "INSERT INTO administrators(admin_id, admin_firstname, admin_surname, admin_email, admin_contact, admin_pass, admin_created, admin_status, admin_priv) 
+                VALUES (?, ?, ?, ?, ?, ?, NOW(), 'Active', ?);";
+
+        $stmt = $con->prepare($query);
+        $date_created = date("Y-m-d H:i:s"); 
+        $record_status = 'Active'; 
+        $stmt->bind_param("iiiisiss", $order_id, $item_id,$quantity_ordered, $supplier_id, $order_status, $admin_id, $date_created, $record_status);
+
+        if ($stmt->execute()) {
+            // echo $order_id . $quantity_ordered . $supplier_id . $order_status . $admin_id . $date_created . $record_status ;
+            header("Location: ../view_order.php");
+            exit();
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+
+    } else {
+        echo "Invalid action.";
+    } 
+
+} else if (isset($_POST['ad-cancel-btn'])){
+    header("Location: ../view_order.php");
+
+}
+
+
 
 
 
