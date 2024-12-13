@@ -222,8 +222,8 @@ else if(isset($_POST['ord-confirm-btn'])){   //FOR ITEM PROCESSING
         $date_created = date("Y-m-d H:i:s"); 
         $stmt->bind_param("issi", $quantity_received,$date_created, $order_status, $order_id);
         if ($stmt->execute()) {
-            // header("Location: ../view_order.php");
-            // exit();
+            header("Location: ../view_order.php");
+            exit();
         } else {
             echo "Error: " . $stmt->error;
         }

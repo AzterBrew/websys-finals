@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2024 at 02:34 AM
+-- Generation Time: Dec 13, 2024 at 07:49 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -35,15 +35,16 @@ CREATE TABLE `administrators` (
   `admin_pass` varchar(25) NOT NULL,
   `admin_contact` varchar(20) NOT NULL,
   `admin_status` varchar(100) NOT NULL,
-  `admin_priv` varchar(50) NOT NULL
+  `admin_priv` varchar(50) NOT NULL,
+  `admin_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `administrators`
 --
 
-INSERT INTO `administrators` (`admin_id`, `admin_firstname`, `admin_surname`, `admin_email`, `admin_pass`, `admin_contact`, `admin_status`, `admin_priv`) VALUES
-(1, 'Eloisa', 'Sumbad', 'ems@gmail.com', '123', '09223010281', 'Active', 'Authorized');
+INSERT INTO `administrators` (`admin_id`, `admin_firstname`, `admin_surname`, `admin_email`, `admin_pass`, `admin_contact`, `admin_status`, `admin_priv`, `admin_created`) VALUES
+(1, 'Eloisa', 'Sumbad', 'ems@gmail.com', '123', '09223010281', 'Active', 'Authorized', '2024-12-13 13:24:04');
 
 -- --------------------------------------------------------
 
@@ -58,6 +59,13 @@ CREATE TABLE `categories` (
   `admin_creator` bigint(20) UNSIGNED NOT NULL,
   `record_status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`cat_id`, `category`, `date_created`, `admin_creator`, `record_status`) VALUES
+(1, 'Actually', '2024-12-12 19:12:25', 1, 'Active');
 
 -- --------------------------------------------------------
 
@@ -78,6 +86,14 @@ CREATE TABLE `items` (
   `record_status` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`item_id`, `item_name`, `item_desc`, `item_img`, `cat_id`, `supplier_id`, `stock`, `admin_creator`, `date_created`, `record_status`) VALUES
+(1, 'Banana Ketchup', '    Catsup', 0x315f313733343033393735392e6a7067, 1, 1, 50, 1, '2024-12-12', 'Active'),
+(2, 'UFC Tomato Ketchup', 'tomato', 0x325f313733343034343135342e6a7067, 1, 1, 45, 1, '2024-12-12', 'Active');
+
 -- --------------------------------------------------------
 
 --
@@ -92,8 +108,18 @@ CREATE TABLE `orders` (
   `supplier_id` int(11) NOT NULL,
   `order_status` varchar(50) NOT NULL,
   `admin_order` bigint(20) UNSIGNED NOT NULL,
-  `order_date` datetime NOT NULL
+  `order_date` datetime NOT NULL,
+  `last_update_date` datetime NOT NULL,
+  `record_status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `item_id`, `quantity_ordered`, `quantity_received`, `supplier_id`, `order_status`, `admin_order`, `order_date`, `last_update_date`, `record_status`) VALUES
+(1, 1, 2, 2, 1, 'Complete', 1, '2024-12-13 02:47:29', '2024-12-13 05:51:11', 'Active'),
+(2, 1, 2, 0, 1, 'Pending', 1, '2024-12-13 02:47:41', '0000-00-00 00:00:00', 'Active');
 
 -- --------------------------------------------------------
 
@@ -111,6 +137,13 @@ CREATE TABLE `supplier` (
   `date_created` datetime NOT NULL,
   `record_status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`supplier_id`, `supplier_name`, `supplier_location`, `supplier_contact`, `supplier_email`, `admin_creator`, `date_created`, `record_status`) VALUES
+(1, 'Madrigal\'s Food Corp.', 'Hermosa, Bataan', '09191911919', 'a@gmail.com', 1, '2024-12-12 22:14:37', 'Active');
 
 -- --------------------------------------------------------
 
@@ -135,7 +168,14 @@ INSERT INTO `user_login` (`userlogin_id`, `admin_id`, `logindate`) VALUES
 (4, 1, '2024-12-11 20:15:58'),
 (5, 1, '2024-12-11 21:26:36'),
 (6, 1, '2024-12-11 21:28:24'),
-(7, 1, '2024-12-11 21:45:29');
+(7, 1, '2024-12-11 21:45:29'),
+(8, 1, '2024-12-12 16:49:59'),
+(9, 1, '2024-12-12 17:04:57'),
+(10, 1, '2024-12-12 17:47:04'),
+(11, 1, '2024-12-13 00:08:10'),
+(12, 1, '2024-12-13 00:19:27'),
+(13, 1, '2024-12-13 04:12:03'),
+(14, 1, '2024-12-13 14:14:34');
 
 --
 -- Indexes for dumped tables
@@ -202,13 +242,13 @@ ALTER TABLE `administrators`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cat_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `cat_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `item_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `item_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

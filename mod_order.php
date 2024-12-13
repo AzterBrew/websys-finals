@@ -59,6 +59,7 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
                             <?php if($isEdit){?> 
                                     <?php }?>
                                 <input type="hidden" name="order_id" value="<?= $order_id; ?>"> <!-- Pass the category ID -->
+                                <input type="hidden" name="q_received" value="<?= $q_received; ?>"> <!-- Pass the category ID -->
                                 <?php
                                     // IF EDIT RECORD
                                     if($isEdit){?> 
@@ -91,7 +92,7 @@ if(isset($_POST['ord-edit-btn'])){ //IF EDITING RECORD
                                                 <input type="number" disabled value="<?=$q_ordered?>" name="q_ordered" placeholder="Quantity Ordered" class="form-control" required>
                                             </div>
                                             <div>
-                                                <input type="number" disabled value="<?=$q_received?>" name="q_received" placeholder="Quantity Received" class="form-control" required>
+                                                <input type="number" disabled value="<?=$q_received?>" name="q_rec" placeholder="Quantity Received" class="form-control" required>
                                             </div>
                                         </div>                                    
                                         <br>                                      
