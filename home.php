@@ -20,17 +20,67 @@ $result = $stmt->get_result();
 ?>
         <div class="page-container">
             <div class="hello-username">
-                <h1>Welcome back to your dashboard, <?=$username?>!</h1>
+                <h1>Welcome back to your Dashboard, <?=$username?>!</h1>
             
-        <div class="dashboard">
+                <div class="dashboard-container">
+        <!-- Overview Panel -->
+        <div class="box overview-panel total-products">
+            <div>
+                <h3>Total Products</h3>
+                <p>1,245</p>
+            </div>
+            <div>
+                <h3>Total Categories</h3>
+                <p>12</p>
+            </div>
+            <div>
+                <h3>Total Orders</h3>
+                <p>430</p>
+            </div>
+            <div>
+                <h3>Total Suppliers</h3>
+                <p>23</p>
+            </div>
+        </div>
 
-            <h1>dashboard</h1>
+        <!-- Stock & Alerts Panel -->
+        <div class="box alerts">
+            <h3>Stock & Alerts:</h3>
+            <div class="alert-item">
+                <span><strong>Low Stock Alert:</strong> Product "ABC" is running low.</span>
+            </div>
+        </div>
 
+        <!-- Order & Sales Summary -->
+        <div class="box">
+            <h3>Order & Sales Summary:</h3>
+            <div>
+                <h4>Ongoing Orders</h4>
+                <p>10 Orders Processing</p>
+            </div>
+            <div>
+                <h4>Sales Performance</h4>
+                <p>$4,500 (Last 7 Days)</p>
+            </div>
+        </div>
 
+        <!-- Quick Actions -->
+        <div class="boxopt quick-actions">
+            <h3>Quick Actions: </h3>
+            <div class="buttons">
+                <button>Add New Product</button> 
+                <button>Create New Order</button> 
+                <button>Add New Category</button>
 
 
         </div>
+        </div>
+                </div>
+            </div>
+        </div>
 
+</div>
+            </div>
             
 
                 <!-- <hr> -->
